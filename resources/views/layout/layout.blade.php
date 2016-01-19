@@ -7,8 +7,8 @@
 
     <title>PaintBuddy Ver 1.0.0</title>
 
-    <meta name="Site for selling art" content="Created using Laravel 5.0 and LayoutIt!">
-    <meta name="Sinthujan G." content="LayoutIt! used">
+    <meta name="Site for selling art" content="Created using Laravel 5.0 and BootPly!">
+    <meta name="Legolas000" content="BootPly used">
 
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
