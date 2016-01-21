@@ -4,15 +4,7 @@
 
         <div class="row">
             <div class="col-md-12">
-                {{--{!! Form::open(array( 'class'=>'form navbar-form navbar-right')) !!}--}}
-                {{--{!! Form::text('search', null,array('required',--}}
-                                                      {{--'class'=>'form-control',--}}
-                                                      {{--'placeholder'=>'Search Order.')) !!}--}}
-                {{--{!! Form::submit('Search',--}}
-                                           {{--array('class'=>'btn btn-default')) !!}--}}
-                {{--{!! Form::close() !!}--}}
                 <br/>
-                {{--<a href="{{action('Artist\ArtsController@ViewCOrders')}}">Add task template</a>--}}
                 <style>
                     .center-table
                     {
@@ -41,12 +33,16 @@
                         <th>
                             Status
                         </th>
-                        <th>
+                        <?php $url = $_SERVER['REQUEST_URI'];?>
+                        @if($url != '/ArtMainOrdersC')
+                            <th>
 
-                        </th>
+                            </th>
+                            @endif
                     </tr>
                     </thead>
                     <tbody>
+
                     @foreach($order as $ord)
                         <?php $cond = "";
                                 $extra="";?>
@@ -55,22 +51,22 @@
                                     $extra="";?>
                             @elseif($ord->status == 'Ongoing')
                                <?php $cond = "active";
-                                      $extra="<td><a href=\"chOrdeStat/$ord->ordID\" class=\"btn btn-default btn-block\" role=\"button\">Done</a></td>";?>
+                                      $extra="<td class=\"col-md-1\"><a href=\"chOrdeStat/$ord->ordID\" class=\"btn btn-default btn-block\" role=\"button\">Done</a></td>";?>
                                 @endif
                         <tr class ={!! $cond !!}>
-                            <td>
+                            <td class="col-md-2">
                                     {!! $ord['ordID'] !!}
                             </td>
-                            <td>
+                            <td class="col-md-2">
                                     {!! $ord['ordDate'] !!}
                             </td>
-                            <td>
+                            <td class="col-md-2">
                                     {!! $ord['DueDate'] !!}
                             </td>
-                            <td>
+                            <td class="col-md-2">
                                     {!! $ord['status'] !!}
                             </td>
-                            {!! $extra !!}
+                                    {!! $extra !!}
                         </tr>
                     @endforeach
                     </tbody>
