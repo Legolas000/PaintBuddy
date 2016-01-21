@@ -46,7 +46,10 @@
                                 $extra="";?>
                         @if($ord->status == 'Completed')
                            <?php $cond = "success";
-                                    $extra="";?>
+                                   if($url == '/ArtMainOrdersC')
+                                       $extra="";
+                                       else
+                                       $extra="<td></td>";?>
                             @elseif($ord->status == 'Ongoing')
                                <?php $cond = "active";
                                       $extra="<td class=\"col-md-1 text-center\"><a href=\"chOrdeStat/$ord->ordID\" class=\"btn btn-default btn-block\" role=\"button\">Done</a></td>";?>
