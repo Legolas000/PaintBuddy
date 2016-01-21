@@ -34,3 +34,15 @@ Route::get('/',function()
 {
     return View::make('pages.home');
 });
+
+Route::get('/ArtMainOrders',"Artist\ArtsController@ViewAOrders");
+Route::get('/ArtMainOrdersC', 'Artist\ArtsController@ViewCOrders');
+Route::get('/ArtMainOrdersO', 'Artist\ArtsController@ViewOOrders');
+
+
+Route::get('/chOrdeStat/{ordID}','Artist\ArtsController@UpdOrderStat');
+
+
+Route::get('/ArtMainCal',"Artist\ArtsController@ViewCal");
+
+
