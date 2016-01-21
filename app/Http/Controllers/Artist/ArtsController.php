@@ -36,8 +36,12 @@ class ArtsController extends Controller
         return view('pages/Artist/ordCalendar')->with('order',json_encode($order));
     }
 
+<<<<<<< HEAD
     public function UpdOrderStat($ordID)
     {
         return 'The value is '.$ordID;
     }
+=======
+
+>>>>>>> origin/master
 }

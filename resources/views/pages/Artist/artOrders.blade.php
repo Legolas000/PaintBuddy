@@ -26,7 +26,11 @@
                 <td style="padding:0 15px 0 5px;"><a href="{{action('Artist\ArtsController@ViewCOrders')}}" class="btn btn-info" role="button">Completed Orders</a></td>
                 <td style="padding:0 15px 0 5px;"><a href="{{action('Artist\ArtsController@ViewOOrders')}}" class="btn btn-info" role="button">Ongoing Orders</a></td>
                 </tr></table>
+<<<<<<< HEAD
                 <table class="table table-bordered table-hover">
+=======
+                <table class="table table-bordered">
+>>>>>>> origin/master
                     <thead>
                     <tr>
                         <th>
@@ -41,13 +45,17 @@
                         <th>
                             Status
                         </th>
+<<<<<<< HEAD
                         <th>
 
                         </th>
+=======
+>>>>>>> origin/master
                     </tr>
                     </thead>
                     <tbody>
                     @foreach($order as $ord)
+<<<<<<< HEAD
                         <?php $cond = "";
                                 $extra="";?>
                         @if($ord->status == 'Completed')
@@ -56,6 +64,13 @@
                             @elseif($ord->status == 'Ongoing')
                                <?php $cond = "active";
                                       $extra="<td><a href=\"chOrdeStat/$ord->ordID\" class=\"btn btn-default btn-block\" role=\"button\">Done</a></td>";?>
+=======
+                        <?php $cond = ""; ?>
+                        @if($ord->status == 'Completed')
+                           <?php $cond = "success" ?>
+                            @elseif($ord->status == 'Ongoing')
+                               <?php $cond = "active" ?>
+>>>>>>> origin/master
                                 @endif
                         <tr class ={!! $cond !!}>
                             <td>
@@ -70,7 +85,10 @@
                             <td>
                                     {!! $ord['status'] !!}
                             </td>
+<<<<<<< HEAD
                             {!! $extra !!}
+=======
+>>>>>>> origin/master
                         </tr>
                     @endforeach
                     </tbody>

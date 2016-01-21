@@ -38,11 +38,14 @@ Route::get('/',function()
 Route::get('/ArtMainOrders',"Artist\ArtsController@ViewAOrders");
 Route::get('/ArtMainOrdersC', 'Artist\ArtsController@ViewCOrders');
 Route::get('/ArtMainOrdersO', 'Artist\ArtsController@ViewOOrders');
+<<<<<<< HEAD
 
 
 Route::get('/chOrdeStat/{ordID}','Artist\ArtsController@UpdOrderStat');
 
 
+=======
+>>>>>>> origin/master
 Route::get('/ArtMainCal',"Artist\ArtsController@ViewCal");
 
 
