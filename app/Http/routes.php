@@ -38,11 +38,7 @@ Route::get('/',function()
 Route::get('/ArtMainOrders',"Artist\ArtsController@ViewAOrders");
 Route::get('/ArtMainOrdersC', 'Artist\ArtsController@ViewCOrders');
 Route::get('/ArtMainOrdersO', 'Artist\ArtsController@ViewOOrders');
-
-
 Route::get('/chOrdeStat/{ordID}','Artist\ArtsController@UpdOrderStat');
-
-
 Route::get('/ArtMainCal',"Artist\ArtsController@ViewCal");
 
 

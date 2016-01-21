@@ -8,7 +8,6 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Redirect;
-
 class ArtsController extends Controller
 {
     //
