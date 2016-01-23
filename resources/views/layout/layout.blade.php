@@ -9,18 +9,22 @@
 
 
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="css/animate.css">
+    <link rel="stylesheet" href="css/bootstrap-dropdownhover.css">
+
     <!--Load Bootstrap css-->
     {{--<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet">--}}
             <!--load font awesome-->
     {{--<link href='//fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>--}}
-
     <link href='http://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
-
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
-
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+    <script src="js/bootstrap-dropdownhover.js"></script>
+
 
     <link rel="shortcut icon" type="image/x-icon" href="images/logoMini.ico" />
 
@@ -73,8 +77,6 @@
         /*.navbar > .container { max-width: 100%; padding: 0; }*/
         /*}*/
     </style>
-
-
 
 </head>
 <body>
@@ -152,7 +154,19 @@
                 <a href="/"><h4> Home </h4></a>
             </div>
             <div class="col-sm-2">
-                <a href="#"> <h4>Categories</h4> </a>
+                {{--<a href="#"> <h4>Categories</h4> </a>--}}
+                <div class="dropdown">
+                    <a href="#" class=" dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-animations="zoomIn fadeInLeft fadeInUp fadeInRight">
+                        <h4>Categories </h4>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Painting</a></li>
+                        <li><a href="#">Drawings</a></li>
+                        <li><a href="#">Prints</a></li>
+                        <li><a href="#">Photography</a></li>
+                        <li><a href="#">Digital Art</a></li>
+                    </ul>
+                </div>
             </div>
             <div class="col-sm-2">
                 <a href="#"><h4>Customize</h4> </a>

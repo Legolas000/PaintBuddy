@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\Artist;
 
+use DB;
 use App\Orders;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Redirect;
@@ -17,6 +17,13 @@ class ArtsController extends Controller
     public function ViewAOrders()
     {
         $order = Orders::all();
+
+//        $order = DB::table('itemorders')
+//            ->join('orders','itemorders.ordID','=','orders.ordID')
+//            ->join('items','itemorders.itID','items.idID')
+//            ->join('register','itemorders.CustID','register.UserName')
+//            ->select('orders.*','itemorders.*')->get();
+//        return $order;
         return view('pages/Artist/artOrders')->with('order',$order);
         //return 'hello';
     }
@@ -41,8 +48,8 @@ class ArtsController extends Controller
             $events[] = \MaddHatter\LaravelFullcalendar\Calendar::event(
                 $eve->title, //event title
                 $eve->allDay, //full day event?
-                $eve->start, //start time (you can also use Carbon instead of DateTime)
-                $eve->end, //end time (you can also use Carbon instead of DateTime)
+                $eve->start, //start time
+                $eve->end, //end time
                 $eve->id //optionally, you can specify an event ID
             );
         }
@@ -54,10 +61,7 @@ class ArtsController extends Controller
             'color' => '#800',
         ])->setOptions([ //set fullcalendar options
             'firstDay' => 1]);
-//        ])->setCallbacks([ //set fullcalendar callback options (will not be JSON encoded)
-//            'viewRender' => 'function() {alert("Callbacks!");}'
-//        ]);
-        $test='hello';
+
         return view('\pages/Artist/ordCalendar', compact('calendar'));
     }
 
