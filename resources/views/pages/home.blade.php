@@ -34,7 +34,6 @@
                         <h5 align="center">{!! $imDets[$j]['itDescrip'] !!}</h5>
                         <hr>
                     </div>
-            <?php $curInd = $j; echo $j;?>
         @endfor
         </div>
     @stop
