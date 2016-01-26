@@ -28,8 +28,6 @@
 
 Route::group(['middleware' => ['web']], function () {
     //
-
-<<<<<<< HEAD
     Route::get('/','mPageController@viewImages');
     Route::get('/ArtMainOrders','Artist\ArtsOrdersController@ViewAOrders');
     Route::get('/ArtMainOrdersC', 'Artist\ArtsOrdersController@ViewCOrders');
