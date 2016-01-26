@@ -2,7 +2,6 @@
 @section('content')
 
 
-
         <div class="row">
             <p align="center">Paint Buddy</p>
             <a href="#"><p align="center" style="color:#16a791;"> Click here to see if we deliver to you. </p></a>
@@ -18,6 +17,7 @@
 
         <div class="col-sm-4">
             <h3 align="center">Mosaic</h3>
+
             <p align="center">Lorem ipsum dolor sit amet, consectetur adipisicing elit...Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris. </p>
         </div>
 
@@ -25,6 +25,7 @@
 
 
         <div class="col-sm-4">
+
             <h3 align="center">Scupture</h3>
             <p align="center">Lorem ipsum dolor sit amet, consectetur adipisicing elit...Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris. </p>
         </div>
