@@ -12,13 +12,35 @@
                         float: none !important;
                     }
                 </style>
+
+                @if(Session::has('success'))
+                    <div class="alert alert-success">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        <strong>Success!</strong> {{ Session::get('message', '') }}
+                    </div>
+                @endif
+
+                {{--@if (!empty($success))--}}
+                {{--{{ $success }}--}}
+                {{--@endif--}}
+                <div class="container">
+                    @if (count($errors) > 0)
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+                </div>
                 <table class="span5 center-table" >
                 <tr>
-                <td style="padding:0 15px 0 5px;"><button type="button" onclick="document.location.href='{{action('Artist\ArtsController@ViewAOrders')}}'" class="btn btn-info" role="button">All Orders</button></td>
-                <td style="padding:0 15px 0 5px;"><button type="button" onclick="document.location.href='{{action('Artist\ArtsController@ViewCOrders')}}'" class="btn btn-info" role="button">Completed Orders</button></td>
-                <td style="padding:0 15px 0 5px;"><button type="button" onclick="document.location.href='{{action('Artist\ArtsController@ViewOOrders')}}'" class="btn btn-info" role="button">Ongoing Orders</button></td>
+                <td style="padding:0 15px 0 5px;"><button type="button" onclick="document.location.href='{{action('Artist\ArtsOrdersController@ViewAOrders')}}'" class="btn btn-info" role="button">All Orders</button></td>
+                <td style="padding:0 15px 0 5px;"><button type="button" onclick="document.location.href='{{action('Artist\ArtsOrdersController@ViewCOrders')}}'" class="btn btn-info" role="button">Completed Orders</button></td>
+                <td style="padding:0 15px 0 5px;"><button type="button" onclick="document.location.href='{{action('Artist\ArtsOrdersController@ViewOOrders')}}'" class="btn btn-info" role="button">Ongoing Orders</button></td>
                 </tr></table>
-                <table class="table table-bordered table-hover">
+                <table  class="table table-bordered table-hover">
                     <thead>
                     <tr>
                         <th class="col-md-2 text-center">

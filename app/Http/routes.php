@@ -28,17 +28,27 @@
 
 Route::group(['middleware' => ['web']], function () {
     //
+
+    Route::get('/','mPageController@viewImages');
+    Route::get('/ArtMainOrders','Artist\ArtsOrdersController@ViewAOrders');
+    Route::get('/ArtMainOrdersC', 'Artist\ArtsOrdersController@ViewCOrders');
+    Route::get('/ArtMainOrdersO', 'Artist\ArtsOrdersController@ViewOOrders');
+    Route::get('/chOrdeStat/{ordID}','Artist\ArtsOrdersController@UpdOrderStat');
+    Route::get('/ArtMainCal','Artist\ArtsOrdersController@ViewCal');//Calendar path
+
+    Route::get('/ArtAsDead','Artist\ArtsOrdersController@ViewOOrdersDD');
+    Route::post('/asDDate','Artist\ArtsOrdersController@UpOrdDD');
+
+//    Route::get('/aitem',function(){
+//        return View::make('pages\Artist\artTemplates');
+//    });
+
+    Route::get('/aitem','Artist\ArtsItemsController@loadDets');
+    Route::post('aitem/add','Artist\ArtsItemsController@addItems');
+    Route::get('/chIteStat/{itID}','Artist\ArtsItemsController@chItemStatus');
 });
 
-Route::get('/',function()
-{
-    return View::make('pages.home');
-});
-
-Route::get('/ArtMainOrders',"Artist\ArtsController@ViewAOrders");
-Route::get('/ArtMainOrdersC', 'Artist\ArtsController@ViewCOrders');
-Route::get('/ArtMainOrdersO', 'Artist\ArtsController@ViewOOrders');
-Route::get('/chOrdeStat/{ordID}','Artist\ArtsController@UpdOrderStat');
-Route::get('/ArtMainCal',"Artist\ArtsController@ViewCal");
-
-
+//Route::get('/',function()
+//{
+//    return View::make('pages.home');
+//});
