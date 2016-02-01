@@ -184,7 +184,7 @@
                             <div class="modal-body">
                                 {!! Form::open(array( 'url' => '/asDDate','class' => 'form','novalidate' => 'novalidate','files' => true)) !!}
                                 <div class="form-group">
-                                    <label for="ordID">Item Name</label>
+                                    <label for="ordID">Order ID</label>
                                     <input type="text" class="form-control" id="ordID" name="ordID" readonly>
                                 </div>
 
@@ -213,7 +213,7 @@
                                     {{--<input type="text" class="form-control" id="ddDate" disabled>--}}
                                     {{--<input type="text" class="form-control" id="datepicker">--}}
 
-                                        <label>Date masks:</label>
+                                        {{--<label>Date masks:</label>--}}
                                         <div class="input-group">
                                             <div class="input-group-addon">
                                                 <i class="fa fa-calendar"></i>
@@ -240,7 +240,7 @@
 
             </div>
 
-            <table  class="table table-condensed table-hover table-bordered">
+            <table  class="table table-condensed table-hover table-bordered" id="asDateTab">
                 <thead>
                 <tr>
                     <th class="col-md-2 text-center">

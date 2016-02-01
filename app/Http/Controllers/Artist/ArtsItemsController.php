@@ -19,10 +19,17 @@ use Validator;
 use Redirect;
 use Session;
 
+/**
+ * Class ArtsItemsController
+ * @package App\Http\Controllers\Artist
+ */
 class ArtsItemsController extends Controller
 {
     //
 
+    /**
+     * @return mixed
+     */
     public function loadDets()
     {
 //        $cats = DB::table('categories')->lists('catID','catName')->get();
@@ -33,6 +40,9 @@ class ArtsItemsController extends Controller
         return view('pages.Artist.artTemplates')->with('cats',$cats)->with('items',$items);
     }
 
+    /**
+     * @return mixed
+     */
     public function addItems() {
         // getting all of the post data
         $dets = array('catName' => Request::input('cat_Name'),'image' => Request::file('image'),'name' => Request::input('iName'),'description' => Request::input('iDescrip'), 'size' => Request::input('iSize'), 'price' => Request::input('iPrice'));
@@ -78,6 +88,10 @@ class ArtsItemsController extends Controller
     }
 
 
+    /**
+     * @param $itID
+     * @return mixed
+     */
     public function chItemStatus($itID){
         //return $itID;
         $res = DB::table('items')->where('itID',$itID)
@@ -86,6 +100,29 @@ class ArtsItemsController extends Controller
             App::abort(500, 'Some Error');
 
         return Redirect::to('/aitem')->with('success', true)->with('message','Item sucessfully removed');
+    }
+
+    /**
+     * @return mixed
+     */
+    public function upPrices()
+    {
+        $dets = array('itName' => Request::input('iName'),'itDescrip' =>Request::input('iDescrip'), 'price' => Request::input('iPrice'));
+
+        $rules = array('itName' => 'required','itDescrip' => 'required','price' => 'required|numeric');
+        // doing the validation, passing post data, rules and the messages
+        $validator = Validator::make($dets, $rules);
+        if ($validator->fails()) {
+            // send back to the page with the input data and errors
+            return Redirect::to('aitem')->withInput()->withErrors($validator);
+        }
+        else {
+            $res = Items::where('itName','=',$dets['itName']);
+            $res->update($dets);
+            if (!$res)
+                App::abort(500, 'Some Error');
+            return Redirect::to('aitem')->with('success', true)->with('message','Item sucessfully updated');
+        }
     }
 
 

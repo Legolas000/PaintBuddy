@@ -28,6 +28,7 @@
 
 Route::group(['middleware' => ['web']], function () {
     //
+
     Route::get('/','mPageController@viewImages');
     Route::get('/ArtMainOrders','Artist\ArtsOrdersController@ViewAOrders');
     Route::get('/ArtMainOrdersC', 'Artist\ArtsOrdersController@ViewCOrders');
@@ -38,12 +39,6 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('/ArtAsDead','Artist\ArtsOrdersController@ViewOOrdersDD');
     Route::post('/asDDate','Artist\ArtsOrdersController@UpOrdDD');
 
-//Route::get('/',function()
-//{
-//    return View::make('pages.home');
-//});
-
-
 //    Route::get('/aitem',function(){
 //        return View::make('pages\Artist\artTemplates');
 //    });
@@ -51,4 +46,14 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('/aitem','Artist\ArtsItemsController@loadDets');
     Route::post('aitem/add','Artist\ArtsItemsController@addItems');
     Route::get('/chIteStat/{itID}','Artist\ArtsItemsController@chItemStatus');
+    Route::post('/upDatePrice','Artist\ArtsItemsController@upPrices');
+
+
+    Route::get('/artPayRep', ['uses' =>'Artist\ArtsReportManager@index', 'as' => 'Report']);        //For Payment report
+    Route::post('/artPayRep', ['uses' =>'Artist\ArtsReportManager@genPaymentReport']);
 });
+
+//Route::get('/',function()
+//{
+//    return View::make('pages.home');
+//});

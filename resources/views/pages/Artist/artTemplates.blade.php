@@ -66,6 +66,7 @@
         @if (count($errors) > 0)
             <div class="alert alert-danger">
                 <ul>
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                     @foreach ($errors->all() as $error)
                         <li>{{ $error }}</li>
                     @endforeach
@@ -73,6 +74,64 @@
             </div>
         @endif
     </div>
+
+    {{--Update price modal below--}}
+
+    <div class="container">
+
+
+        <!-- Modal -->
+        <div class="modal fade" id="pricUpModal" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Update Price</h4>
+                    </div>
+                    <div class="modal-body">
+                        @if(Session::has('success'))
+                            <div class="alert-box success">
+                                <h2>{!! Session::get('success') !!}</h2>
+                            </div>
+                        @endif
+                        {!! Form::open(array( 'url' => 'upDatePrice','class' => 'form','novalidate' => 'novalidate','files' => true)) !!}
+                        {{--@if(Session::has('error'))--}}
+                            {{--<p class="errors">{!! Session::get('error') !!}</p>--}}
+                        {{--@endif--}}
+                        <div class="form-group">
+                            <label for="iName">Item Name</label>
+                            <input type="text" class="form-control" id="iName" name="iName" readonly>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="iDescrip">Description:</label>
+                            <textarea class="form-control" rows="5" id="iDescrip" name="iDescrip"></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="iSize">Item Size:</label>
+                            <input type="text" class="form-control" id="iSize" name="iSize" disabled>
+                        </div>
+                        <div class="form-group">
+                            <label for="iPrice">Item Price:</label>
+                            <input type="text" class="form-control" id="iPrice" name="iPrice">
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-info btn-lg send-btn center-block" style="align-self: center">Update</button>
+                        </div>
+                        {!! Form::close() !!}
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    {{--Add item Modal below--}}
 
     <div class="container">
 
@@ -89,28 +148,6 @@
                         <h4 class="modal-title">Add Items</h4>
                     </div>
                     <div class="modal-body">
-
-
-                        {{--<form role="form">--}}
-                        {{--<div class="form-group">--}}
-                        {{--<label for="iName">Item Name</label>--}}
-                        {{--<input type="text" class="form-control" id="iName" name="iName">--}}
-                        {{--</div>--}}
-                        {{--<div class="form-group">--}}
-                        {{--<label for="iDescrip">Description:</label>--}}
-                        {{--<textarea class="form-control" rows="5" id="iDescrip" name="iDescrip"></textarea>--}}
-                        {{--</div>--}}
-                        {{--<div class="form-group">--}}
-                        {{--<label for="cFile">Choose File</label>--}}
-                        {{--<span class="btn btn-default btn-file">Browse <input type="file"></span>--}}
-                        {{--</div>--}}
-                        {{--<div class="form-group">--}}
-                        {{--<button class="btn btn-default send-btn" style="align-self: center">Add</button>--}}
-                        {{--</div>--}}
-                        {{--</form>--}}
-                        {{--<div>--}}
-                        {{--</div>--}}
-
                         @if(Session::has('success'))
                             <div class="alert-box success">
                                 <h2>{!! Session::get('success') !!}</h2>
@@ -118,39 +155,27 @@
                         @endif
                         {!! Form::open(array( 'url' => 'aitem/add','class' => 'form','novalidate' => 'novalidate','files' => true)) !!}
                         @if(Session::has('error'))
-                            {{--<p class="errors">{!!$errors->first('image')!!}</p>--}}
-                            {{----}}
                             <p class="errors">{!! Session::get('error') !!}</p>
                         @endif
 
                         <div class="form-group">
                             @if(isset($cats))
-                                {{--{!! Form::Label('catID', 'Category:') !!}--}}
-                                {{--{!! Form::select('catID', $categories, null, ['class' => 'form-control']) !!}--}}
                                 {!! Form::Label('catLabel', 'Category:') !!}
                                 {!! Form::select('cat_Name', $cats, null, ['class' => 'form-control']) !!}
                             @endif
 
                         </div>
                         <div class="form-group">
-                            {{--{!! Form::label('Product Name') !!}--}}
-                            {{--{!! Form::text('name', null, array('placeholder'=>'Chess Board')) !!}--}}
                             <label for="iName">Item Name</label>
                             <input type="text" class="form-control" id="iName" name="iName">
-
-
                         </div>
 
                         <div class="form-group">
-                            {{--{!! Form::label('Product SKU') !!}--}}
-                            {{--{!! Form::text('sku', null, array('placeholder'=>'1234')) !!}--}}
                             <label for="iDescrip">Description:</label>
                             <textarea class="form-control" rows="5" id="iDescrip" name="iDescrip"></textarea>
                         </div>
 
                         <div class="form-group">
-                            {{--{!! Form::label('Product Image') !!}--}}
-                            {{--{!! Form::file('image', null) !!}--}}
                             <label for="cFile">Choose File</label>
                             <span class="btn btn-default btn-file">Browse {!! Form::file('image', null) !!}</span>
 
@@ -165,7 +190,6 @@
                         </div>
 
                         <div class="form-group">
-                            {{--{!! Form::submit('Create Product!') !!}--}}
                             <button type="submit" class="btn btn-info btn-lg send-btn center-block" style="align-self: center">Add</button>
                         </div>
                         {!! Form::close() !!}
@@ -180,9 +204,7 @@
             </div>
         </div>
 
-        </div>
-    {{--{!! Form::close() !!}--}}
-    {{--</div>--}}
+    </div>
 
     {{--Table Informations--}}
 

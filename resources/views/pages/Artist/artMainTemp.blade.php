@@ -14,6 +14,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
     {{--<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">--}}
 
+
+            <!-- FullCalendar 2.6.0 -->
+    <script src='js/jquery-1.9.1.min.js'></script>
+    <script src='js/jquery-ui.js'></script>
+    <script src='js/fullcalendar.min.js'></script>
+
+
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <!-- Ionicons -->
@@ -175,6 +182,7 @@ desired effect
                         <li class="active"><a href="/ArtAsDead"><i class="fa fa-link"></i> <span>Assign Deadlines</span></a></li>
                     </ul>
                 </li>
+                <li><a href="/artPayRep"><i class="fa fa-link"></i> <span>Reports</span></a></li>
             </ul><!-- /.sidebar-menu -->
         </section>
         <!-- /.sidebar -->
@@ -287,6 +295,12 @@ desired effect
 <script src="plugins/input-mask/jquery.inputmask.date.extensions.js"></script>
 <script src="plugins/input-mask/jquery.inputmask.extensions.js"></script>
 
+<!-- FullCalendar 2.6.0 -->
+<script src='js/jquery-1.9.1.min.js'></script>
+<script src='js/jquery-ui.js'></script>
+<script src='js/fullcalendar.min.js'></script>
+
+
 
 <!-- Optionally, you can add Slimscroll and FastClick plugins.
      Both of these plugins are recommended to enhance the
@@ -300,13 +314,23 @@ desired effect
         //$('#reservation').daterangepicker();
         $("#ddMask").inputmask("yyyy-mm-dd", {"placeholder": "yyyy-mm-dd"});
         $('table tbody tr  td').on('click', function () {
-            $("#asDateModal").modal("show");
-            $("#ordID").val($.trim($(this).closest('tr').children()[0].textContent));
-            $("#ordDate").val($.trim($(this).closest('tr').children()[1].textContent));
-            $("#dDate").val($.trim($(this).closest('tr').children()[2].textContent));
-            //$("#ddDate").val($.trim($(this).closest('tr').children()[3].textContent));
-           //$("#ddMask").inputmask(setvalue, {"placeholder": "yyyy-mm-dd"});
-            $("#ddMask").val($.trim($(this).closest('tr').children()[3].textContent));
+        $("#asDateModal").modal("show");
+        $("#ordID").val($.trim($(this).closest('tr').children()[0].textContent));
+        $("#ordDate").val($.trim($(this).closest('tr').children()[1].textContent));
+        $("#dDate").val($.trim($(this).closest('tr').children()[2].textContent));
+        //$("#ddDate").val($.trim($(this).closest('tr').children()[3].textContent));
+       //$("#ddMask").inputmask(setvalue, {"placeholder": "yyyy-mm-dd"});
+        $("#ddMask").val($.trim($(this).closest('tr').children()[3].textContent));
+        });
+    });
+
+    $(document).ready(function() {
+        $('table tbody tr  td').on('click', function () {
+            $("#pricUpModal").modal("show");
+            $("#iName").val($.trim($(this).closest('tr').children()[1].textContent));
+            $("#iDescrip").val($.trim($(this).closest('tr').children()[2].textContent));
+            $("#iSize").val($.trim($(this).closest('tr').children()[3].textContent));
+            $("#iPrice").val($.trim($(this).closest('tr').children()[4].textContent));
         });
     });
 </script>

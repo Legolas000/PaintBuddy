@@ -59,4 +59,14 @@ class EventModel extends Model implements Event
     {
         return $this->end;
     }
+
+    /**
+     * Get the color for event
+     *
+     * @return string
+     */
+    public function getColor()
+    {
+        return $this->color;
+    }
 }

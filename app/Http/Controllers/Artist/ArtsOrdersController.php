@@ -12,42 +12,53 @@ use Illuminate\Support\Facades\Validator;
 use MaddHatter\LaravelFullcalendar\Calendar;
 use Illuminate\Support\Facades\Request;
 
+/**
+ * Class ArtsOrdersController
+ * @package App\Http\Controllers\Artist
+ */
 class ArtsOrdersController extends Controller
 {
     //
 
+    /**
+     * @return $this
+     */
     public function ViewAOrders()
     {
         $order = Orders::all();
-
-//        $order = DB::table('itemorders')
-//            ->join('orders','itemorders.ordID','=','orders.ordID')
-//            ->join('items','itemorders.itID','items.idID')
-//            ->join('register','itemorders.CustID','register.UserName')
-//            ->select('orders.*','itemorders.*')->get();
-//        return $order;
         return view('pages/Artist/artOrders')->with('order',$order);
-        //return 'hello';
     }
 
+    /**
+     * @return $this
+     */
     public function ViewCOrders()
     {
         $order = Orders::where('status','=','Completed')->get();
         return view('pages/Artist/artOrders')->with('order',$order);
     }
 
+    /**
+     * @return $this
+     */
     public function ViewOOrders()
     {
         $order = Orders::where('status','=','Ongoing')->get();
         return view('pages/Artist/artOrders')->with('order',$order);
     }
 
+    /**
+     * @return $this
+     */
     public function ViewOOrdersDD()
     {
         $order = Orders::where('status','=','Ongoing')->get();
         return view('pages/Artist/artOrdersAsDate')->with('order',$order);
     }
 
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function ViewCal()
     {
         $event = EventModel::all();
@@ -58,21 +69,27 @@ class ArtsOrdersController extends Controller
                 $eve->allDay, //full day event?
                 $eve->start, //start time
                 $eve->end, //end time
-                $eve->id //optionally, you can specify an event ID
+                $eve->id, //optionally, you can specify an event ID
+                $eve->color
             );
         }
 
         $eloquentEvent = EventModel::first(); //EventModel implements MaddHatter\LaravelFullcalendar\Event
 
         $calendar = \Calendar::addEvents($events) //add an array with addEvents
-        ->addEvent($eloquentEvent, [ //set custom color fo this event
-            'color' => '#800',
-        ])->setOptions([ //set fullcalendar options
+//        ->addEvent($eloquentEvent, [ //set custom color fo this event
+//            'color' => '#800',
+//        ])
+            ->setOptions([ //set fullcalendar options
             'firstDay' => 1]);
 
         return view('\pages/Artist/ordCalendar', compact('calendar'));
     }
 
+    /**
+     * @param $ordID
+     * @return mixed
+     */
     public function UpdOrderStat($ordID)
     {
         $res = Orders::where('ordID',$ordID)
@@ -83,18 +100,13 @@ class ArtsOrdersController extends Controller
         return Redirect::to('/ArtMainOrders')->with('success', true)->with('message','Order sucessfully completed');
     }
 
+    /**
+     * @return mixed
+     */
     public function UpOrdDD()
     {
 
         $dets = array('orderID' => Request::input('ordID'),'deadline' =>Request::input('ddMask'));
-//        return $dets;
-//        if (Request::hasFile('image'))
-//        {
-//            $file = Request::file('image');
-//            return 'got photo';
-//            //and do this
-//        }
-        // return $dets;
 
         //setting up rules
         $rules = array('orderID' => 'required','deadline' => 'required');
