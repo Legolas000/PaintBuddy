@@ -6,9 +6,13 @@ use App\EventModel;
 use App\Orders;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+<<<<<<< HEAD
 use Carbon\Carbon;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\DB;
+=======
+use Illuminate\Support\Facades\App;
+>>>>>>> origin/master
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Validator;
 use MaddHatter\LaravelFullcalendar\Calendar;
@@ -28,8 +32,12 @@ class ArtsOrdersController extends Controller
     public function ViewAOrders()
     {
         $order = Orders::all();
+<<<<<<< HEAD
         $calendar = $this->ViewOrCal();
         return view('pages/Artist/artOrders')->with('order',$order)->with('calendar',$calendar);
+=======
+        return view('pages/Artist/artOrders')->with('order',$order);
+>>>>>>> origin/master
     }
 
     /**
@@ -38,8 +46,12 @@ class ArtsOrdersController extends Controller
     public function ViewCOrders()
     {
         $order = Orders::where('status','=','Completed')->get();
+<<<<<<< HEAD
         $calendar = $this->ViewOrCal();
         return view('pages/Artist/artOrders')->with('order',$order)->with('calendar',$calendar);
+=======
+        return view('pages/Artist/artOrders')->with('order',$order);
+>>>>>>> origin/master
     }
 
     /**
@@ -48,6 +60,7 @@ class ArtsOrdersController extends Controller
     public function ViewOOrders()
     {
         $order = Orders::where('status','=','Ongoing')->get();
+<<<<<<< HEAD
         $calendar = $this->ViewOrCal();
         return view('pages/Artist/artOrders')->with('order',$order)->with('calendar',$calendar);
     }
@@ -65,6 +78,9 @@ class ArtsOrdersController extends Controller
         //return $order;
         $calendar = $this->ViewOrCal();
         return view('pages/Artist/artOrders')->with('order',$order)->with('calendar',$calendar);
+=======
+        return view('pages/Artist/artOrders')->with('order',$order);
+>>>>>>> origin/master
     }
 
     /**
@@ -73,13 +89,18 @@ class ArtsOrdersController extends Controller
     public function ViewOOrdersDD()
     {
         $order = Orders::where('status','=','Ongoing')->get();
+<<<<<<< HEAD
         $calendar = $this->ViewDCal();
         return view('pages/Artist/artOrdersAsDate')->with('order',$order)->with('calendar',$calendar);
+=======
+        return view('pages/Artist/artOrdersAsDate')->with('order',$order);
+>>>>>>> origin/master
     }
 
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
+<<<<<<< HEAD
     public function ViewDCal()
     {
         //$event = EventModel::all();
@@ -120,12 +141,31 @@ class ArtsOrdersController extends Controller
         }
 
        // $eloquentEvent = EventModel::first(); //EventModel implements MaddHatter\LaravelFullcalendar\Event
+=======
+    public function ViewCal()
+    {
+        $event = EventModel::all();
+
+        foreach ($event as $eve) {
+            $events[] = Calendar::event(
+                $eve->title, //event title
+                $eve->allDay, //full day event?
+                $eve->start, //start time
+                $eve->end, //end time
+                $eve->id, //optionally, you can specify an event ID
+                $eve->color
+            );
+        }
+
+        $eloquentEvent = EventModel::first(); //EventModel implements MaddHatter\LaravelFullcalendar\Event
+>>>>>>> origin/master
 
         $calendar = \Calendar::addEvents($events) //add an array with addEvents
 //        ->addEvent($eloquentEvent, [ //set custom color fo this event
 //            'color' => '#800',
 //        ])
             ->setOptions([ //set fullcalendar options
+<<<<<<< HEAD
             'firstDay' => 1])
             ->setCallbacks([ //set fullcalendar callback options (will not be JSON encoded)
                 'eventRender' =>'function(event, element){element.attr(\'href\', \'javascript:void(0);\');}',
@@ -207,6 +247,13 @@ class ArtsOrdersController extends Controller
     }
 
 
+=======
+            'firstDay' => 1]);
+
+        return view('\pages/Artist/ordCalendar', compact('calendar'));
+    }
+
+>>>>>>> origin/master
     /**
      * @param $ordID
      * @return mixed
@@ -228,12 +275,18 @@ class ArtsOrdersController extends Controller
     {
 
         $dets = array('orderID' => Request::input('ordID'),'deadline' =>Request::input('ddMask'));
+<<<<<<< HEAD
         $ordD = DB::table('orders')->select('ordDate')->where('ordID','=',$dets['orderID'])->first();
        // $test= ;
          //return $ordDate;
         //var_dump($ordDate);
         //setting up rules
         $rules = array('orderID' => 'required','deadline' => 'required|date_format:Y-m-d|after:'.$ordD->ordDate);
+=======
+
+        //setting up rules
+        $rules = array('orderID' => 'required','deadline' => 'required');
+>>>>>>> origin/master
         // doing the validation, passing post data, rules and the messages
         $validator = Validator::make($dets, $rules);
         if ($validator->fails()) {

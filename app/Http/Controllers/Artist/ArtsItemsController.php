@@ -67,7 +67,11 @@ class ArtsItemsController extends Controller
         else {
             // checking file is valid.
             if (Request::file('image')->isValid()) {
+<<<<<<< HEAD
                 $destinationPath = 'img/tempEng'; // upload path
+=======
+                $destinationPath = 'images/tempEng'; // upload path
+>>>>>>> origin/master
                 $extension = Request::file('image')->getClientOriginalExtension(); // getting image extension
                 $fileName = rand(11111,99999).Carbon::now()->format('Y-m-d').'.'.$extension; // renameing image
                 Request::file('image')->move($destinationPath, $fileName); // uploading file to given path

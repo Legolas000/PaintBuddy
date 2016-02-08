@@ -2,7 +2,11 @@
 
 @section('ArtContent')
 
+<<<<<<< HEAD
     {{--<div class="container">--}}
+=======
+    <div class="container">
+>>>>>>> origin/master
         <div class="row">
             {{--<div class="col-md-10 col-md-offset-1">--}}
                 {{--<div class="panel panel-default">--}}
@@ -27,7 +31,11 @@
                 {{--</div>--}}
             {{--</div>--}}
         </div>
+<<<<<<< HEAD
     {{--</div>--}}
+=======
+    </div>
+>>>>>>> origin/master
 
 
     @stop

@@ -27,8 +27,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
     <!-- jvectormap -->
     <link rel="stylesheet" href="plugins/jvectormap/jquery-jvectormap-1.2.2.css">
+<<<<<<< HEAD
     <!-- DataTables -->
     <link rel="stylesheet" href="plugins/datatables/dataTables.bootstrap.css">
+=======
+>>>>>>> origin/master
     <!-- Theme style -->
     <link rel="stylesheet" href="dist/css/AdminLTE.min.css">
     <!-- AdminLTE Skins. Choose a skin from the css/skins
@@ -174,6 +177,7 @@ desired effect
                 @if($url == '/ArtMainOrdersC')
                     {!! $act1='active' !!}
                 @endif
+<<<<<<< HEAD
 
                 <li><a href="/aitem"><i class="fa fa-laptop"></i> <span>Templates</span></a></li>
                 <li class="treeview">
@@ -204,6 +208,38 @@ desired effect
             @yield('ArtContent')
             <!-- Your Page Content Here -->
 
+=======
+
+                <li><a href="/ArtMainCal"><i class="fa fa-link"></i> <span>Calendar</span></a></li>
+                <li><a href="/aitem"><i class="fa fa-link"></i> <span>Templates</span></a></li>
+                <li class="treeview">
+                    <a href="#"><i class="fa fa-link"></i> <span>Order Management</span> <i class="fa fa-angle-left pull-right"></i></a>
+                    <ul class="treeview-menu">
+                        <li class="active"><a href="/ArtMainOrders"><i class="fa fa-link"></i> <span>View Orders</span></a></li>
+                        <li class="active"><a href="/ArtAsDead"><i class="fa fa-link"></i> <span>Assign Deadlines</span></a></li>
+                    </ul>
+                </li>
+                <li><a href="/artPayRep"><i class="fa fa-link"></i> <span>Reports</span></a></li>
+            </ul><!-- /.sidebar-menu -->
+        </section>
+        <!-- /.sidebar -->
+    </aside>
+
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <ol class="breadcrumb">
+                <li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
+                <li class="active">Here</li>
+            </ol>
+        </section>
+
+        <!-- Main content -->
+        <section class="content">
+            @yield('ArtContent')
+            <!-- Your Page Content Here -->
+
+>>>>>>> origin/master
         </section><!-- /.content -->
     </div><!-- /.content-wrapper -->
 
@@ -274,6 +310,7 @@ desired effect
                     </div><!-- /.form-group -->
                 </form>
             </div><!-- /.tab-pane -->
+<<<<<<< HEAD
         </div>
     </aside><!-- /.control-sidebar -->
     <!-- Add the sidebar's background. This div must be placed
@@ -302,6 +339,14 @@ desired effect
 
 
 
+=======
+        </div>
+    </aside><!-- /.control-sidebar -->
+    <!-- Add the sidebar's background. This div must be placed
+         immediately after the control sidebar -->
+    <div class="control-sidebar-bg"></div>
+</div><!-- ./wrapper -->
+>>>>>>> origin/master
 
 <!-- REQUIRED JS SCRIPTS -->
 
@@ -325,6 +370,7 @@ desired effect
 <script src='js/fullcalendar.min.js'></script>
 
 
+<<<<<<< HEAD
 <!-- DataTables -->
 <script src="plugins/datatables/jquery.dataTables.min.js"></script>
 <script src="plugins/datatables/dataTables.bootstrap.min.js"></script>
@@ -335,6 +381,8 @@ desired effect
 <script src="plugins/fastclick/fastclick.min.js"></script>
 
 
+=======
+>>>>>>> origin/master
 
 <!-- Optionally, you can add Slimscroll and FastClick plugins.
      Both of these plugins are recommended to enhance the
@@ -347,7 +395,11 @@ desired effect
         //$( "#datepicker" ).datepicker();
         //$('#reservation').daterangepicker();
         $("#ddMask").inputmask("yyyy-mm-dd", {"placeholder": "yyyy-mm-dd"});
+<<<<<<< HEAD
         $('.dTab table tbody tr  td').on('click', function () {
+=======
+        $('table tbody tr  td').on('click', function () {
+>>>>>>> origin/master
         $("#asDateModal").modal("show");
         $("#ordID").val($.trim($(this).closest('tr').children()[0].textContent));
         $("#ordDate").val($.trim($(this).closest('tr').children()[1].textContent));
@@ -357,6 +409,7 @@ desired effect
         $("#ddMask").val($.trim($(this).closest('tr').children()[3].textContent));
         });
     });
+<<<<<<< HEAD
 
     $(document).ready(function() {
         $('table tbody tr  td.dbOrder').on('click', function () {
@@ -499,6 +552,18 @@ desired effect
     });
 
 
+=======
+
+    $(document).ready(function() {
+        $('table tbody tr  td').on('click', function () {
+            $("#pricUpModal").modal("show");
+            $("#iName").val($.trim($(this).closest('tr').children()[1].textContent));
+            $("#iDescrip").val($.trim($(this).closest('tr').children()[2].textContent));
+            $("#iSize").val($.trim($(this).closest('tr').children()[3].textContent));
+            $("#iPrice").val($.trim($(this).closest('tr').children()[4].textContent));
+        });
+    });
+>>>>>>> origin/master
 </script>
 
 </body>

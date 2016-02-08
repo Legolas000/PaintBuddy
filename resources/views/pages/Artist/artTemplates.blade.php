@@ -81,7 +81,11 @@
 
 
         <!-- Modal -->
+<<<<<<< HEAD
         <div class="modal fade modal-info" id="pricUpModal" role="dialog">
+=======
+        <div class="modal fade" id="pricUpModal" role="dialog">
+>>>>>>> origin/master
             <div class="modal-dialog">
 
                 <!-- Modal content-->
@@ -90,11 +94,19 @@
                         <h4 class="modal-title">Update Price</h4>
                     </div>
                     <div class="modal-body">
+<<<<<<< HEAD
                         {{--@if(Session::has('success'))--}}
                             {{--<div class="alert-box success">--}}
                                 {{--<h2>{!! Session::get('success') !!}</h2>--}}
                             {{--</div>--}}
                         {{--@endif--}}
+=======
+                        @if(Session::has('success'))
+                            <div class="alert-box success">
+                                <h2>{!! Session::get('success') !!}</h2>
+                            </div>
+                        @endif
+>>>>>>> origin/master
                         {!! Form::open(array( 'url' => 'upDatePrice','class' => 'form','novalidate' => 'novalidate','files' => true)) !!}
                         {{--@if(Session::has('error'))--}}
                             {{--<p class="errors">{!! Session::get('error') !!}</p>--}}
@@ -118,19 +130,31 @@
                             <input type="text" class="form-control" id="iPrice" name="iPrice">
                         </div>
                         <div class="form-group">
+<<<<<<< HEAD
                             <button type="submit" class="btn btn-danger send-btn center-block" style="align-self: center">Update</button>
+=======
+                            <button type="submit" class="btn btn-info btn-lg send-btn center-block" style="align-self: center">Update</button>
+>>>>>>> origin/master
                         </div>
                         {!! Form::close() !!}
                     </div>
 
                     <div class="modal-footer">
+<<<<<<< HEAD
                         <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+=======
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+>>>>>>> origin/master
                     </div>
                 </div>
 
             </div>
         </div>
+<<<<<<< HEAD
     </div>
+=======
+
+>>>>>>> origin/master
     {{--Add item Modal below--}}
 
     <div class="container">
@@ -138,7 +162,11 @@
 
         <!-- Modal -->
         {{--{!! Form::open(array('url'=>'aitem/add','method'=>'POST', 'files'=>true)) !!}--}}
+<<<<<<< HEAD
         <div class="modal fade modal-info" id="itemModal" role="dialog">
+=======
+        <div class="modal fade" id="itemModal" role="dialog">
+>>>>>>> origin/master
             <div class="modal-dialog">
 
                 <!-- Modal content-->
@@ -148,11 +176,19 @@
                         <h4 class="modal-title">Add Items</h4>
                     </div>
                     <div class="modal-body">
+<<<<<<< HEAD
                         {{--@if(Session::has('success'))--}}
                             {{--<div class="alert-box success">--}}
                                 {{--<h2>{!! Session::get('success') !!}</h2>--}}
                             {{--</div>--}}
                         {{--@endif--}}
+=======
+                        @if(Session::has('success'))
+                            <div class="alert-box success">
+                                <h2>{!! Session::get('success') !!}</h2>
+                            </div>
+                        @endif
+>>>>>>> origin/master
                         {!! Form::open(array( 'url' => 'aitem/add','class' => 'form','novalidate' => 'novalidate','files' => true)) !!}
                         @if(Session::has('error'))
                             <p class="errors">{!! Session::get('error') !!}</p>
@@ -190,14 +226,22 @@
                         </div>
 
                         <div class="form-group">
+<<<<<<< HEAD
                             <button type="submit" class="btn btn-danger send-btn center-block" style="align-self: center">Add</button>
+=======
+                            <button type="submit" class="btn btn-info btn-lg send-btn center-block" style="align-self: center">Add</button>
+>>>>>>> origin/master
                         </div>
                         {!! Form::close() !!}
                     </div>
 
 
                     <div class="modal-footer">
+<<<<<<< HEAD
                         <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+=======
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+>>>>>>> origin/master
                     </div>
                 </div>
 
@@ -205,6 +249,7 @@
         </div>
 
     </div>
+<<<<<<< HEAD
 </br>
     {{--Table Informations--}}
 <div class="row">
@@ -264,6 +309,65 @@
         </div>
     </div>
 
+=======
+
+    {{--Table Informations--}}
+
+    <table class="table table-bordered table-hover">
+        <thead>
+        <tr>
+            <th class="col-md-2 text-center">
+                Category
+            </th>
+            <th class="col-md-2 text-center">
+                Item Name
+            </th>
+            <th class="col-md-2 text-center">
+                Item Description
+            </th>
+            <th class="col-md-2 text-center">
+                Item Size
+            </th>
+            <th class="col-md-2 text-center">
+                Price
+            </th>
+            <th class="col-md-2 text-center">
+                Update
+            </th>
+
+        </tr>
+        </thead>
+        <tbody>
+
+        @foreach($items as $it)
+            <tr>
+                <td class="col-md-2 text-center">
+                    {!! $it->catRef !!}
+                </td>
+                <td class="col-md-2 text-center">
+                    {!! $it->itName !!}
+                </td>
+                <td class="col-md-2 text-center">
+                    {!! $it->itDescrip !!}
+                </td>
+                <td class="col-md-2 text-center">
+                    {!! $it->itSize !!}
+                </td>
+                <td class="col-md-2 text-center">
+                    {!! $it->price !!}
+                </td>
+                <td class="col-md-1 text-center">
+                <a href="/chIteStat/{!! $it->itID !!}" class="btn btn-danger btn-block" role="button">Remove</a>
+                </td>
+            </tr>
+            @endforeach
+        </tbody>
+    </table>
+    <!-- Trigger the modal with a button -->
+    <div class="col-lg-12">
+        <button type="button" class="btn btn-info btn-lg col-lg-12" data-toggle="modal" data-target="#itemModal">Add Item</button>
+    </div>
+>>>>>>> origin/master
 </div>
 
 

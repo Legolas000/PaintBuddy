@@ -69,6 +69,7 @@ class EventModel extends Model implements Event
     {
         return $this->color;
     }
+<<<<<<< HEAD
 
     /**
      * Get the color for event
@@ -89,4 +90,6 @@ class EventModel extends Model implements Event
     {
         return $this->description;
     }
+=======
+>>>>>>> origin/master
 }

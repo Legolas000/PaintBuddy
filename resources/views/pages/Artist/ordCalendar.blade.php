@@ -8,6 +8,7 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.2.7/fullcalendar.min.js"></script>
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.2.7/fullcalendar.min.css"/>
+<<<<<<< HEAD
     {{--<div id="calendar">--}}
         {{--{!! $calendar->calendar() !!}--}}
         {{--{!! $calendar->script() !!}--}}
@@ -65,6 +66,23 @@
             {{--margin: 0 auto;--}}
         {{--}--}}
     {{--</style>--}}
+=======
+    <div id="calendar">
+        {!! $calendar->calendar() !!}
+        {!! $calendar->script() !!}
+    </div>
+
+
+    <style>
+        #calendar {
+            text-align: center;
+            font-size: 14px;
+            font-family: "Lucida Grande",Helvetica,Arial,Verdana,sans-serif;
+            width: 900px;
+            margin: 0 auto;
+        }
+    </style>
+>>>>>>> origin/master
 
 
 @stop

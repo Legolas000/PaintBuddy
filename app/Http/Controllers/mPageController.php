@@ -7,8 +7,11 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+<<<<<<< HEAD
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
+=======
+>>>>>>> origin/master
 
 /**
  * Class mPageController
@@ -21,6 +24,7 @@ class mPageController extends Controller
     /**
      * @return $this
      */
+<<<<<<< HEAD
     public function viewCatDets($catName)
     {
         $imDets = DB::select(DB::raw("SELECT * FROM items WHERE catRef = (SELECT catID FROM categories WHERE catName ='$catName')"));
@@ -35,5 +39,11 @@ class mPageController extends Controller
                     ->first();
         return view('pages/Main/viewItemDets')->with('itDets',$itDets);
         //return json_encode($itDets);
+=======
+    public function viewImages()
+    {
+        $imDets = Items::where('status','AC')->get();
+        return view('pages/home')->with('imDets',$imDets);
+>>>>>>> origin/master
     }
 }

@@ -29,6 +29,7 @@
 Route::group(['middleware' => ['web']], function () {
     //
 
+<<<<<<< HEAD
     Route::get('/',function(){
         return View::make('pages.main.home');
     });   //Main Page controller
@@ -54,11 +55,32 @@ Route::group(['middleware' => ['web']], function () {
 
     Route::get('/ArtAsDead','Artist\ArtsOrdersController@ViewOOrdersDD');   //For assisgn dates part
     Route::post('/asDDate','Artist\ArtsOrdersController@UpOrdDD');
+=======
+    Route::get('/','mPageController@viewImages');
+    Route::get('/ArtMainOrders','Artist\ArtsOrdersController@ViewAOrders');
+    Route::get('/ArtMainOrdersC', 'Artist\ArtsOrdersController@ViewCOrders');
+    Route::get('/ArtMainOrdersO', 'Artist\ArtsOrdersController@ViewOOrders');
+    Route::get('/chOrdeStat/{ordID}','Artist\ArtsOrdersController@UpdOrderStat');
+    Route::get('/ArtMainCal','Artist\ArtsOrdersController@ViewCal');//Calendar path
+
+    Route::get('/ArtAsDead','Artist\ArtsOrdersController@ViewOOrdersDD');
+    Route::post('/asDDate','Artist\ArtsOrdersController@UpOrdDD');
 
 //    Route::get('/aitem',function(){
 //        return View::make('pages\Artist\artTemplates');
 //    });
 
+    Route::get('/aitem','Artist\ArtsItemsController@loadDets');
+    Route::post('aitem/add','Artist\ArtsItemsController@addItems');
+    Route::get('/chIteStat/{itID}','Artist\ArtsItemsController@chItemStatus');
+    Route::post('/upDatePrice','Artist\ArtsItemsController@upPrices');
+>>>>>>> origin/master
+
+//    Route::get('/aitem',function(){
+//        return View::make('pages\Artist\artTemplates');
+//    });
+
+<<<<<<< HEAD
     Route::get('/aitem','Artist\ArtsItemsController@loadDets'); //For items
     Route::post('aitem/add','Artist\ArtsItemsController@addItems');
     Route::get('/chIteStat/{itID}','Artist\ArtsItemsController@chItemStatus');
@@ -77,6 +99,10 @@ Route::group(['middleware' => ['web']], function () {
     Route::any('/retColData', [ 'uses'=>'Artist\ArtsChartController@colData']);
 
 
+=======
+    Route::get('/artPayRep', ['uses' =>'Artist\ArtsReportManager@index', 'as' => 'Report']);        //For Payment report
+    Route::post('/artPayRep', ['uses' =>'Artist\ArtsReportManager@genPaymentReport']);
+>>>>>>> origin/master
 });
 
 //Route::get('/',function()
