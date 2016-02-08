@@ -7,7 +7,9 @@
     "require": {
         "php": ">=5.5.9",
         "laravel/framework": "5.2.*",
-        "laravelcollective/html": "~5.0"
+        "laravelcollective/html": "~5.0",
+        "maddhatter/laravel-fullcalendar": "^1.2",
+        "cossou/jasperphp": "^2.1"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
