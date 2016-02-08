@@ -456,17 +456,7 @@
         <!-- /#content -->
 
 
-        <!-- {{--<?php $sArr = sizeof($imDets);?>--}}
-        {{--<div class="row">--}}
-        {{--@for ($j = 0; $j < $sArr; $j++)--}}
-                    {{--<div class="col-sm-4">--}}
-                        {{--<img src="images/tempEng/{!! $imDets[$j]['imPath'] !!}" width="330px" height="330px"/>--}}
-                        {{--<h4 style="color:#16a791;" align="center">{!! $imDets[$j]['itName'] !!}</h4>--}}
-                        {{--<h5 align="center">{!! $imDets[$j]['itDescrip'] !!}</h5>--}}
-                        {{--<hr>--}}
-                    {{--</div>--}}
-        {{--@endfor--}}
-        {{--</div>--}}-->
+    </div>
 
 
     @stop

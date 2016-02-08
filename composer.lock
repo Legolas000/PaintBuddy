@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "c5f09be65e6abddf000fe4e8060f756a",
-    "content-hash": "c0d6f82bb640a6f3f72f4ee6706523d6",
+    "hash": "118d8cf1ebb12fd596e5ed12b043db12",
+    "content-hash": "4ffc9a4e0748952f03492abab59639eb",
     "packages": [
         {
             "name": "classpreloader/classpreloader",
@@ -60,6 +60,47 @@
                 "preload"
             ],
             "time": "2015-11-09 22:51:51"
+        },
+        {
+            "name": "cossou/jasperphp",
+            "version": "v2.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/cossou/JasperPHP.git",
+                "reference": "6e222fb5cf7b3b0f7118060784919c229c63b4bf"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/cossou/JasperPHP/zipball/6e222fb5cf7b3b0f7118060784919c229c63b4bf",
+                "reference": "6e222fb5cf7b3b0f7118060784919c229c63b4bf",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "JasperPHP": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Hélder Duarte",
+                    "email": "cossou@gmail.com"
+                }
+            ],
+            "description": "Create Reports in PHP with JasperReports",
+            "homepage": "https://github.com/cossou/JasperPHP",
+            "keywords": [
+                "jasper",
+                "jasperreports",
+                "java",
+                "pdf",
+                "reports"
+            ],
+            "time": "2015-10-16 09:07:06"
         },
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -571,6 +612,43 @@
                 "storage"
             ],
             "time": "2015-12-19 20:16:43"
+        },
+        {
+            "name": "maddhatter/laravel-fullcalendar",
+            "version": "v1.2.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/maddhatter/laravel-fullcalendar.git",
+                "reference": "fc6c07cb82ffb65605ebbaec4b787359bbced2b9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/maddhatter/laravel-fullcalendar/zipball/fc6c07cb82ffb65605ebbaec4b787359bbced2b9",
+                "reference": "fc6c07cb82ffb65605ebbaec4b787359bbced2b9",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "~5.0",
+                "php": ">=5.4.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "MaddHatter\\LaravelFullcalendar": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Shawn Tunney",
+                    "email": "shawn.tunney@gmail.com"
+                }
+            ],
+            "description": "Laravel helper for FullCalendar.io",
+            "time": "2015-10-23 11:42:32"
         },
         {
             "name": "monolog/monolog",
