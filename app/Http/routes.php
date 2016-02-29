@@ -11,9 +11,62 @@
 |
 */
 
-//Route::get('/', function () {
-//    return view('welcome');
-//});
+
+
+Route::group(['middleware' => ['web']], function () {
+
+
+    Route::get('/',function(){
+
+       // return view('layout.layout');
+        return view('pages.main.home');
+    });
+
+    Route::get('/contact',function(){
+        return view('pages.main.categoryView');
+    });
+
+    Route::get('/index', 'PagesController@index');
+
+    Route::get('/category', 'PagesController@category');
+
+    Route::get('cart', 'CartHandle@add');
+    Route::post('cart', 'CartHandle@add');
+
+    Route::post('cartUpdate', 'CartHandle@update');
+
+    Route::get('checkoutCreate', 'PagesController@create');
+    Route::post('checkoutCreate', 'PagesController@store');
+
+    Route::post('checkoutCreate1', 'PagesController@store1');
+
+    Route::post('checkoutCreate2', 'PagesController@store2');
+
+    Route::post('checkout4', 'PagesController@checkout4');
+
+    Route::get('category.{id}','PagesController@show');
+
+    Route::get('/sample', 'CartHandle@test');
+
+    Route::get('about', 'PagesController@about');
+
+    Route::get('about/create', 'PagesController@create');
+
+    Route::get('sample', 'PagesController@sample');
+
+    Route::get('about/{id}', 'PagesController@show');
+
+    Route::get('sample1', 'PagesController@sample1');
+    Route::get('/cat.{catName}','mPageController@viewCatDets');
+    Route::get('/viewDets.{itemID}','mPageController@viewItDets');
+
+
+
+
+});
+
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -28,58 +81,4 @@
 
 Route::group(['middleware' => ['web']], function () {
     //
-
-    Route::get('/',function(){
-        return View::make('pages.main.home');
-    });   //Main Page controller
-    Route::get('/contact',function(){
-       return View::make('pages.main.static.contact');
-    });
-
-
-
-    Route::get('/cat.{catName}','mPageController@viewCatDets');
-    Route::get('/viewDets.{itemID}','mPageController@viewItDets');
-
-
-
-
-
-    Route::get('/ArtMainOrders','Artist\ArtsOrdersController@ViewAOrders');//For orders part
-    Route::get('/ArtMainOrdersC', 'Artist\ArtsOrdersController@ViewCOrders');
-    Route::get('/ArtMainOrdersO', 'Artist\ArtsOrdersController@ViewOOrders');
-    Route::get('/ArtOrdCustRating', 'Artist\ArtsOrdersController@ViewCusRatOrd');
-    Route::get('/chOrdeStat/{ordID}','Artist\ArtsOrdersController@UpdOrderStat');
-  // Route::get('/ArtMainCal','Artist\ArtsOrdersController@ViewCal');//Calendar path
-
-    Route::get('/ArtAsDead','Artist\ArtsOrdersController@ViewOOrdersDD');   //For assisgn dates part
-    Route::post('/asDDate','Artist\ArtsOrdersController@UpOrdDD');
-
-//    Route::get('/aitem',function(){
-//        return View::make('pages\Artist\artTemplates');
-//    });
-
-    Route::get('/aitem','Artist\ArtsItemsController@loadDets'); //For items
-    Route::post('aitem/add','Artist\ArtsItemsController@addItems');
-    Route::get('/chIteStat/{itID}','Artist\ArtsItemsController@chItemStatus');
-    Route::post('/upDatePrice','Artist\ArtsItemsController@upPrices');
-
-
-    Route::get('/artPayRep', ['uses' =>'Artist\ArtsReportManager@index', 'as' => 'Report']);        //For Payment report
-    Route::post('/artPayRep', ['uses' =>'Artist\ArtsReportManager@genPaymentReport']);
-
-
-    //Route::get('/artChartView','Artist\ArtsChartController@colData');
-    //Route::get('/artChartView','Artist\ArtsChartController@view');
-    //Route::post('/artChartView','Artist\ArtsChartController@colData');
-
-    Route::any('/artChartView', [ 'uses'=>'Artist\ArtsChartController@view']);
-    Route::any('/retColData', [ 'uses'=>'Artist\ArtsChartController@colData']);
-
-
 });
-
-//Route::get('/',function()
-//{
-//    return View::make('pages.home');
-//});
