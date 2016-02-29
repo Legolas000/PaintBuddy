@@ -11,9 +11,62 @@
 |
 */
 
-//Route::get('/', function () {
-//    return view('welcome');
-//});
+
+
+Route::group(['middleware' => ['web']], function () {
+
+
+    Route::get('/',function(){
+
+       // return view('layout.layout');
+        return view('pages.main.home');
+    });
+
+    Route::get('/contact',function(){
+        return view('pages.main.categoryView');
+    });
+
+    Route::get('/index', 'PagesController@index');
+
+    Route::get('/category', 'PagesController@category');
+
+    Route::get('cart', 'CartHandle@add');
+    Route::post('cart', 'CartHandle@add');
+
+    Route::post('cartUpdate', 'CartHandle@update');
+
+    Route::get('checkoutCreate', 'PagesController@create');
+    Route::post('checkoutCreate', 'PagesController@store');
+
+    Route::post('checkoutCreate1', 'PagesController@store1');
+
+    Route::post('checkoutCreate2', 'PagesController@store2');
+
+    Route::post('checkout4', 'PagesController@checkout4');
+
+    Route::get('category.{id}','PagesController@show');
+
+    Route::get('/sample', 'CartHandle@test');
+
+    Route::get('about', 'PagesController@about');
+
+    Route::get('about/create', 'PagesController@create');
+
+    Route::get('sample', 'PagesController@sample');
+
+    Route::get('about/{id}', 'PagesController@show');
+
+    Route::get('sample1', 'PagesController@sample1');
+    Route::get('/cat.{catName}','mPageController@viewCatDets');
+    Route::get('/viewDets.{itemID}','mPageController@viewItDets');
+
+
+
+
+});
+
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -29,16 +82,3 @@
 Route::group(['middleware' => ['web']], function () {
     //
 });
-
-Route::get('/',function()
-{
-    return View::make('pages.home');
-});
-
-Route::get('/ArtMainOrders',"Artist\ArtsController@ViewAOrders");
-Route::get('/ArtMainOrdersC', 'Artist\ArtsController@ViewCOrders');
-Route::get('/ArtMainOrdersO', 'Artist\ArtsController@ViewOOrders');
-Route::get('/chOrdeStat/{ordID}','Artist\ArtsController@UpdOrderStat');
-Route::get('/ArtMainCal',"Artist\ArtsController@ViewCal");
-
-
