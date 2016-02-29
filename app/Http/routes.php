@@ -11,7 +11,7 @@
 |
 */
 
-
+Route::get();
 
 Route::group(['middleware' => ['web']], function () {
 
