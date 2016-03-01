@@ -148,6 +148,11 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
+        MaddHatter\LaravelFullcalendar\ServiceProvider::class,
+        JasperPHP\JasperPHPServiceProvider::class,
+        Kryptonit3\Counter\CounterServiceProvider::class,
+        Reportico\Reportico\ReporticoServiceProvider::class,
+
         /*
          * Application Service Providers...
          */
@@ -203,6 +208,8 @@ return [
         'View'      => Illuminate\Support\Facades\View::class,
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
+        'Calendar' => MaddHatter\LaravelFullcalendar\Facades\Calendar::class,
+        'Counter' => Kryptonit3\Counter\Facades\CounterFacade::class,
     ],
 
 ];
