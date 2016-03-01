@@ -59,9 +59,15 @@ class ArtsOrdersController extends Controller
     {
         //$order = DB::select(DB::raw('SELECT * FROM orders O, itemorders io ,register r WHERE o.ordID = io.ordID AND io.custID = r.UserName ORDER BY r.UsrRating DESC'));
         $order = Orders::join('itemorders','itemorders.ordID','=','orders.ordID')
+<<<<<<< HEAD
                         ->join('users','users.email','=','orders.custID')
                         ->where('orders.status','=','Ongoing')
                         ->orderby('users.UsrRating','DESC')->get();
+=======
+                        ->join('register','register.UserName','=','itemorders.custID')
+                        ->where('orders.status','=','Ongoing')
+                        ->orderby('register.UsrRating','DESC')->get();
+>>>>>>> origin/master
         //return $order;
         $calendar = $this->ViewOrCal();
         return view('pages/Artist/artOrders')->with('order',$order)->with('calendar',$calendar);
@@ -74,7 +80,10 @@ class ArtsOrdersController extends Controller
     {
         $order = Orders::where('status','=','Ongoing')->get();
         $calendar = $this->ViewDCal();
+<<<<<<< HEAD
         //return json_encode($order);
+=======
+>>>>>>> origin/master
         return view('pages/Artist/artOrdersAsDate')->with('order',$order)->with('calendar',$calendar);
     }
 
@@ -87,21 +96,28 @@ class ArtsOrdersController extends Controller
         //$event = DB::table('event_models')->get();
 
         //$eventCol = DB::select('SELECT DueDate AS \'start\',DueDate AS \'end\', ordID AS \'id\', status AS \'title\' FROM orders');
+<<<<<<< HEAD
      //  $event = DB::select('SELECT DLineDate AS \'start\',DLineDate AS \'end\',DueDate AS \'chkDate\', ordID AS \'id\',ordDate , status AS \'title\' FROM orders');
         $event = DB::table('orders')
                 ->join('users','users.email','=','orders.custID')
                 ->select('users.*','orders.DLineDate AS start','orders.DLineDate AS end','orders.ordID AS id','orders.ordDate','DueDate AS chkDate','orders.status AS title')
                 ->get();
+=======
+        $event = DB::select('SELECT DLineDate AS \'start\',DLineDate AS \'end\',DueDate AS \'chkDate\', ordID AS \'id\',ordDate , status AS \'title\' FROM orders');
+>>>>>>> origin/master
         $events = array();
         foreach ($event as $eve) {
             //return $eve->start;
             //return Carbon::today()->addDays(2);
+<<<<<<< HEAD
             $itemDets = DB::table('items')
                         ->join('itemorders','itemorders.itID','=','items.itID')
                         ->join('orders','orders.ordID','=','itemorders.ordID')
                         ->select('items.*','itemorders.qty')
                         ->where('itemorders.ordID','=',$eve->id)
                         ->get();
+=======
+>>>>>>> origin/master
             if($eve->title == 'Completed')
                 $color='#00a65a';
                 elseif(Carbon::today()->subDay()->gte(Carbon::parse($eve->chkDate)) AND $eve->title == 'Ongoing')
@@ -115,7 +131,10 @@ class ArtsOrdersController extends Controller
                         else
                             $color = '#00c0ef';
                     }
+<<<<<<< HEAD
             $name = $eve->name." ".$eve->lname;
+=======
+>>>>>>> origin/master
             $events[] = Calendar::event(
                 "Order ID:-".$eve->id, //event title
                 1, //full day event?
@@ -124,6 +143,7 @@ class ArtsOrdersController extends Controller
                 $eve->id, //optionally, you can specify an event ID
                 $color,
                 'http://www.google.com',
+<<<<<<< HEAD
                 "<script>
                     $(\"#itOrdersTab\").DataTable();
                  </script>
@@ -174,6 +194,12 @@ class ArtsOrdersController extends Controller
                         </div>
                     </div>
                 </div>"
+=======
+                " <label for='ordID'>Ordered Date</label>
+                  <input type='text' class='form-control' id='ordID' name='ordID' readonly value=\"$eve->ordDate\">
+                  <label for='ordID'>Due Date</label>
+                  <input type='text' class='form-control' id='ordID' name='ordID' readonly value=\"$eve->chkDate\">"
+>>>>>>> origin/master
             );
         }
 
@@ -199,8 +225,11 @@ class ArtsOrdersController extends Controller
         //return view('\pages/Artist/ordCalendar',compact('calendar'));
     }
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> origin/master
     /**
      * @return mixed
      */
@@ -210,16 +239,21 @@ class ArtsOrdersController extends Controller
         //$event = DB::table('event_models')->get();
 
 
+<<<<<<< HEAD
         //$event = DB::select('SELECT DueDate AS \'start\',DueDate AS \'end\', ordID AS \'id\',ordDate , status AS \'title\' FROM orders');
 
         $event = DB::table('orders')
             ->join('users','users.email','=','orders.custID')
             ->select('users.*','orders.DueDate AS start','orders.DueDate AS end','orders.ordID AS id','orders.ordDate','DueDate AS chkDate','orders.status AS title')
             ->get();
+=======
+        $event = DB::select('SELECT DueDate AS \'start\',DueDate AS \'end\', ordID AS \'id\',ordDate , status AS \'title\' FROM orders');
+>>>>>>> origin/master
         $events = array();
         foreach ($event as $eve) {
             //return $eve->start;
             //return Carbon::today()->addDays(2);
+<<<<<<< HEAD
             $itemDets = DB::table('items')
                 ->join('itemorders','itemorders.itID','=','items.itID')
                 ->join('orders','orders.ordID','=','itemorders.ordID')
@@ -227,6 +261,8 @@ class ArtsOrdersController extends Controller
                 ->where('itemorders.ordID','=',$eve->id)
                 ->get();
 
+=======
+>>>>>>> origin/master
             if($eve->title == 'Completed')
                 $color='#00a65a';
             elseif(Carbon::today()->subDay()->gte(Carbon::parse($eve->start)) AND $eve->title == 'Ongoing')
@@ -240,7 +276,10 @@ class ArtsOrdersController extends Controller
                 else
                     $color = '#00c0ef';
             }
+<<<<<<< HEAD
             $name = $eve->name." ".$eve->lname;
+=======
+>>>>>>> origin/master
             $events[] = Calendar::event(
                 "Order ID:-".$eve->id, //event title
                 1, //full day event?
@@ -249,6 +288,7 @@ class ArtsOrdersController extends Controller
                 $eve->id, //optionally, you can specify an event ID
                 $color,
                 'http://www.google.com',
+<<<<<<< HEAD
                 "<script>
                     $(\"#itOrdersTab\").DataTable();
                  </script>
@@ -299,6 +339,12 @@ class ArtsOrdersController extends Controller
                         </div>
                     </div>
                 </div>"
+=======
+                " <label for='ordID'>Ordered Date</label>
+                  <input type='text' class='form-control' id='ordID' name='ordID' readonly value=\"$eve->ordDate\">
+                  <label for='ordID'>Due Date</label>
+                  <input type='text' class='form-control' id='ordID' name='ordID' readonly value=\"$eve->start\">"
+>>>>>>> origin/master
             );
         }
 
@@ -326,6 +372,7 @@ class ArtsOrdersController extends Controller
     }
 
 
+<<<<<<< HEAD
     public function printArr($itArr)
     {
         $value="";
@@ -353,6 +400,8 @@ class ArtsOrdersController extends Controller
 
     }
 
+=======
+>>>>>>> origin/master
     /**
      * @param $ordID
      * @return mixed
@@ -374,17 +423,27 @@ class ArtsOrdersController extends Controller
     {
 
         $dets = array('orderID' => Request::input('ordID'),'deadline' =>Request::input('ddMask'));
+<<<<<<< HEAD
         $ordD = DB::table('orders')->select('DueDate')->where('ordID','=',$dets['orderID'])->first();
+=======
+        $ordD = DB::table('orders')->select('ordDate')->where('ordID','=',$dets['orderID'])->first();
+>>>>>>> origin/master
        // $test= ;
          //return $ordDate;
         //var_dump($ordDate);
         //setting up rules
+<<<<<<< HEAD
         $messages = [
                 'after' => 'The deadline must be a date after today or today.'
         ];
         $rules = array('orderID' => 'required','deadline' => 'required|date_format:Y-m-d|after:today|before:'.$ordD->DueDate);
         // doing the validation, passing post data, rules and the messages
         $validator = Validator::make($dets, $rules,$messages);
+=======
+        $rules = array('orderID' => 'required','deadline' => 'required|date_format:Y-m-d|after:'.$ordD->ordDate);
+        // doing the validation, passing post data, rules and the messages
+        $validator = Validator::make($dets, $rules);
+>>>>>>> origin/master
         if ($validator->fails()) {
             // send back to the page with the input data and errors
             return Redirect::to('ArtAsDead')->withInput()->withErrors($validator);
@@ -399,6 +458,7 @@ class ArtsOrdersController extends Controller
         }
     }
 
+<<<<<<< HEAD
     public function CancOrder($ordID)
     {
         $res = DB::table('itemorders')->where('ordID','=',$ordID)->delete();
@@ -408,6 +468,8 @@ class ArtsOrdersController extends Controller
         return Redirect::to('/ArtMainOrders')->with('success', true)->with('message','Order sucessfully canceled');
     }
 
+=======
+>>>>>>> origin/master
 
 
 }

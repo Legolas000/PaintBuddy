@@ -210,6 +210,7 @@ return [
         'Html' => Collective\Html\HtmlFacade::class,
         'Calendar' => MaddHatter\LaravelFullcalendar\Facades\Calendar::class,
         'Counter' => Kryptonit3\Counter\Facades\CounterFacade::class,
+
     ],
 
 ];
