@@ -81,7 +81,6 @@ return [
     */
 
     'username' => env('MAIL_USERNAME'),
-    //'username' => env('mayuraselvarajah26@gmail.com'),
     /*
     |--------------------------------------------------------------------------
     | SMTP Server Password
@@ -94,7 +93,6 @@ return [
     */
 
     'password' => env('MAIL_PASSWORD'),
-    // 'password' => env('19944738'),
     /*
     |--------------------------------------------------------------------------
     | Sendmail System Path
