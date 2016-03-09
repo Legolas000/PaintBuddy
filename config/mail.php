@@ -27,7 +27,7 @@ return [
     | the Mailgun mail service which will provide reliable deliveries.
     |
     */
-
+//mailgun.org'
     'host' => env('MAIL_HOST', 'smtp.mailgun.org'),
 
     /*
@@ -42,7 +42,7 @@ return [
     */
 
     'port' => env('MAIL_PORT', 587),
-
+//587
     /*
     |--------------------------------------------------------------------------
     | Global "From" Address
@@ -54,7 +54,7 @@ return [
     |
     */
 
-    'from' => ['address' => null, 'name' => null],
+    'from' => ['address' => 'paintbuddyProj@gmail.com	', 'name' => 'PaintBuddy Team'],
 
     /*
     |--------------------------------------------------------------------------
@@ -68,7 +68,7 @@ return [
     */
 
     'encryption' => env('MAIL_ENCRYPTION', 'tls'),
-
+//tls
     /*
     |--------------------------------------------------------------------------
     | SMTP Server Username
@@ -81,7 +81,7 @@ return [
     */
 
     'username' => env('MAIL_USERNAME'),
-
+    //'username' => env('mayuraselvarajah26@gmail.com'),
     /*
     |--------------------------------------------------------------------------
     | SMTP Server Password
@@ -94,7 +94,7 @@ return [
     */
 
     'password' => env('MAIL_PASSWORD'),
-
+    // 'password' => env('19944738'),
     /*
     |--------------------------------------------------------------------------
     | Sendmail System Path
@@ -107,5 +107,7 @@ return [
     */
 
     'sendmail' => '/usr/sbin/sendmail -bs',
+
+    'pretend'=>false,
 
 ];
