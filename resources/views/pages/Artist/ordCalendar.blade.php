@@ -2,55 +2,52 @@
 
 @section('ArtContent')
 
+    {{--This file is for reference purposes. Not used in this project--}}
     {{--Main Required Libraries -- Curtesy :- http://fullcalendar.io/--}}
+    <link href="https://fonts.googleapis.com/css?family=Lato:100" rel="stylesheet" type="text/css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.2.7/fullcalendar.min.js"></script>
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.2.7/fullcalendar.min.css"/>
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.2.7/fullcalendar.print.css"/>
 
-    <script>
-        $(document).ready(function() {
+    <div class="row">
+        <div class="container">
+            <div class="col-md-6">
+                <div class="box box-primary">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Calendar</h3>
+                        <div class="box-tools pull-right">
+                            <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                            <button class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                        </div>
+                    </div>
+                    <div class="box-body">
+                        <div id="calendar">
+                            {!! $calendar->calendar() !!}
+                            {!! $calendar->script() !!}
+                        </div>
+                    </div><!-- /.box-body -->
+                </div><!-- /.box -->
+            </div>
 
-            $('#calendar').fullCalendar({
-                defaultDate: '2016-01-12',
-                editable: true,
-                eventLimit: true, // allow "more" link when too many events
-                events: [
-                    {{--@foreach($orders as $ord)--}}
-                    {{--{--}}
-                        {{--title :{!! $ord -> ordID !!},--}}
-                        {{--start:{!! $ord->ordDate !!}--}}
-                    {{--}--}}
-                    {{--@endforeach--}}
-                        {
-                            title: 'All Day Event',
-                            start: '2016-01-01'
-                        },
-
-                ]
-            });
-
-        });
-    </script>
-
-    <style>
-
-        body {
-            margin: 40px 10px;
-            padding: 0px;
-            font-family: "Lucida Grande",Helvetica,Arial,Verdana,sans-serif;
-            font-size: 14px;
-        }
-
-        #calendar {
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-    </style>
-    </head>
-
-        <div id='calendar'></div>
-
-
+            <div class="col-md-6">
+                <div class="box box-primary">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Bar Chart</h3>
+                        <div class="box-tools pull-right">
+                            <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                            <button class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                        </div>
+                    </div>
+                    <div class="box-body">
+                        <div id="calendar">
+                            {!! $calendar->calendar() !!}
+                            {!! $calendar->script() !!}
+                            <h1>gelrel</h1>
+                        </div>
+                    </div><!-- /.box-body -->
+                </div><!-- /.box -->
+            </div>
+        </div>
+    </div>
 @stop
