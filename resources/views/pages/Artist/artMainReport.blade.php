@@ -2,7 +2,10 @@
 
 @section('ArtContent')
 
+<<<<<<< HEAD
     <br/>
+=======
+>>>>>>> origin/master
         <div class="row">
             <div class="col-md-6">
                 <div class="box box-primary">
@@ -40,7 +43,11 @@
                                                 <i class="fa fa-calendar"></i>
                                             </div>
                                             <input type="hidden" name="_token" value="{{{ csrf_token() }}}" />
+<<<<<<< HEAD
                                             <input type="text" class="form-control pull-right active" id="pRepdRange" name="pRepdRange">
+=======
+                                            <input type="text" class="form-control pull-right active" id="dRange" name="dRange">
+>>>>>>> origin/master
                                         </div><!-- /.input group -->
                                     </div>
                                     <button type="submit" class="btn btn-success btn-lg center-block"><i class="fa fa-download"></i>Generate</button>
@@ -52,6 +59,7 @@
         </div>
 
 
+<<<<<<< HEAD
         <div class="row">
             <div class="col-md-6">
                 <div class="box box-primary">
@@ -101,4 +109,6 @@
             </div>
         </div>
 
+=======
+>>>>>>> origin/master
     @stop

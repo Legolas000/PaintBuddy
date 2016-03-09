@@ -149,6 +149,10 @@ return [
         Illuminate\View\ViewServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
         MaddHatter\LaravelFullcalendar\ServiceProvider::class,
+<<<<<<< HEAD
+=======
+        JasperPHP\JasperPHPServiceProvider::class,
+>>>>>>> origin/master
         Kryptonit3\Counter\CounterServiceProvider::class,
         Reportico\Reportico\ReporticoServiceProvider::class,
 
@@ -209,6 +213,10 @@ return [
         'Html' => Collective\Html\HtmlFacade::class,
         'Calendar' => MaddHatter\LaravelFullcalendar\Facades\Calendar::class,
         'Counter' => Kryptonit3\Counter\Facades\CounterFacade::class,
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/master
     ],
 
 ];

@@ -45,13 +45,18 @@
             <div class="small-box bg-red">
                 <div class="inner">
                     <h3>{!! $detsArr['uniVisitors'] !!}</h3>
+<<<<<<< HEAD
                     <p>Visitor Count</p>
+=======
+                    <p>Unique Visitors</p>
+>>>>>>> origin/master
                 </div>
                 <div class="icon">
                     <i class="ion ion-pie-graph"></i>
                 </div>
             </div>
         </div><!-- ./col -->
+<<<<<<< HEAD
 
         <div class="nav-tabs-custom col-md-6">
             <ul class="nav nav-tabs pull-right">
@@ -82,4 +87,8 @@
     </div>
 
 
+=======
+    </div>
+
+>>>>>>> origin/master
 @stop

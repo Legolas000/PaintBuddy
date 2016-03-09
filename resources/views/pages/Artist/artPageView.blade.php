@@ -4,6 +4,10 @@
 
     <br/>
     <div class="row">
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/master
         <div class="col-md-6">
             <div class="box box-primary">
                 <div class="box-header with-border">
@@ -21,6 +25,11 @@
             </div><!-- /.box -->
         </div>
 
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> origin/master
         <div class="col-md-6">
             <div class="box box-primary">
                 <div class="box-header with-border">
@@ -44,6 +53,7 @@
                     </thead>
 
                     <tbody>
+<<<<<<< HEAD
                         @foreach($countDets as $it)
                             <tr>
                                 <td class="col-md-2 text-center dbOrder">
@@ -54,6 +64,18 @@
                                 </td>
                             </tr>
                         @endforeach
+=======
+                    @foreach($countDets as $it)
+                        <tr>
+                            <td class="col-md-2 text-center dbOrder">
+                                {!! $it->PageName !!}
+                            </td>
+                            <td class="col-md-2 text-center dbOrder">
+                                {!! $it->PageCount !!}
+                            </td>
+                        </tr>
+                    @endforeach
+>>>>>>> origin/master
                     </tbody>
                 </table>
             </div><!-- /.box-body -->
