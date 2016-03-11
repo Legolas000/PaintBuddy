@@ -15,7 +15,7 @@ return [
     |
     */
 
-    'driver' => env('MAIL_DRIVER', 'smtp'),
+    'driver' => 'smtp',   //env('MAIL_DRIVER','smtp'),
 
     /*
     |--------------------------------------------------------------------------
@@ -27,8 +27,8 @@ return [
     | the Mailgun mail service which will provide reliable deliveries.
     |
     */
-//mailgun.org'
-    'host' => env('MAIL_HOST', 'smtp.mailgun.org'),
+
+    'host' => 'smtp.gmail.com',   ///env('MAIL_HOST', 'smtp.gmail.com'),      //'smtp.gmail.com',
 
     /*
     |--------------------------------------------------------------------------
@@ -41,8 +41,8 @@ return [
     |
     */
 
-    'port' => env('MAIL_PORT', 587),
-//587
+    'port' => '465',   //env('MAIL_PORT', '465'),  //587,
+
     /*
     |--------------------------------------------------------------------------
     | Global "From" Address
@@ -54,7 +54,7 @@ return [
     |
     */
 
-    'from' => ['address' => 'paintbuddyProj@gmail.com	', 'name' => 'PaintBuddy Team'],
+    'from' => ['address' => 'paintbuddypromotion@gmail.com', 'name' => 'Arhamkhan'],
 
     /*
     |--------------------------------------------------------------------------
@@ -67,8 +67,8 @@ return [
     |
     */
 
-    'encryption' => env('MAIL_ENCRYPTION', 'tls'),
-//tls
+    'encryption' => 'ssl',     //env('MAIL_ENCRYPTION', 'ssl'),   //'tls',
+
     /*
     |--------------------------------------------------------------------------
     | SMTP Server Username
@@ -80,7 +80,8 @@ return [
     |
     */
 
-    'username' => env('MAIL_USERNAME'),
+    'username' => 'paintbuddypromotion@gmail.com',
+
     /*
     |--------------------------------------------------------------------------
     | SMTP Server Password
@@ -92,7 +93,8 @@ return [
     |
     */
 
-    'password' => env('MAIL_PASSWORD'),
+    'password' => 'promotion123',
+
     /*
     |--------------------------------------------------------------------------
     | Sendmail System Path
@@ -106,6 +108,7 @@ return [
 
     'sendmail' => '/usr/sbin/sendmail -bs',
 
-    'pretend'=>false,
+    'pretend' => false,
+
 
 ];

@@ -149,13 +149,6 @@ return [
         Illuminate\View\ViewServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
         MaddHatter\LaravelFullcalendar\ServiceProvider::class,
-<<<<<<< HEAD
-=======
-        JasperPHP\JasperPHPServiceProvider::class,
->>>>>>> origin/master
-        Kryptonit3\Counter\CounterServiceProvider::class,
-        Reportico\Reportico\ReporticoServiceProvider::class,
-
         /*
          * Application Service Providers...
          */
@@ -163,6 +156,8 @@ return [
         App\Providers\AuthServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+        
+       // UxWeb\SweetAlert\SweetAlertServiceProvider::class,
 
     ],
 
@@ -212,11 +207,10 @@ return [
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
         'Calendar' => MaddHatter\LaravelFullcalendar\Facades\Calendar::class,
-        'Counter' => Kryptonit3\Counter\Facades\CounterFacade::class,
-<<<<<<< HEAD
-=======
+        // 'Alert' => UxWeb\SweetAlert\SweetAlert::class,
 
->>>>>>> origin/master
+
+
     ],
 
 ];

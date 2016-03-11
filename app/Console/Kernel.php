@@ -14,7 +14,6 @@ class Kernel extends ConsoleKernel
      */
     protected $commands = [
         // Commands\Inspire::class,
-        'App\Console\Commands\SendAlert'
     ];
 
     /**
@@ -27,7 +26,5 @@ class Kernel extends ConsoleKernel
     {
         // $schedule->command('inspire')
         //          ->hourly();
-        $schedule->command('alert:artist')->daily()
-            ->appendOutputTo('storage\logs\sendRep.txt'); //Send mail alerting artist
     }
 }

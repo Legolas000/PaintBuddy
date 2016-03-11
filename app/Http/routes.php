@@ -10,6 +10,11 @@
 | and give it the controller to call when that URI is requested.
 |
 */
+
+//Route::get('/', function () {
+//    return view('welcome');
+//});
+
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -20,94 +25,72 @@
 | kernel and includes session state, CSRF protection, and more.
 |
 */
+
+
 Route::group(['middleware' => ['web']], function () {
-
-	//Common routes
-    Route::get('/',function(){
-        return view('pages.main.home');
-    });
-
-    Route::get('/contact',function(){
-        return view('pages.main.categoryView');
-    });
-	Route::get('/cat.{catName}','mPageController@viewCatDets');
-    Route::get('/viewDets.{itemID}',['uses'=>'mPageController@viewItDets', 'as' =>'ViewItDets']);
-
+    Route::get('/discount','Discount\discountController@discount');
 	
-	//Firnas's Routes
-    Route::get('/index', 'PagesController@index');
 
-    Route::get('/category', 'PagesController@category');
-
-    Route::get('cart', 'CartHandle@add');
-    Route::post('cart', 'CartHandle@add');
-
-    Route::post('cartUpdate', 'CartHandle@update');
-
-    Route::get('checkoutCreate', 'PagesController@create');
-    Route::post('checkoutCreate', 'PagesController@store');
-
-    Route::post('checkoutCreate1', 'PagesController@store1');
-
-    Route::post('checkoutCreate2', 'PagesController@store2');
-
-    Route::post('checkout4', 'PagesController@checkout4');
-
-    Route::get('category.{id}','PagesController@show');
-
-    Route::get('/sample', 'CartHandle@test');
-
-    Route::get('about', 'PagesController@about');
-
-    Route::get('about/create', 'PagesController@create');
-
-    Route::get('sample', 'PagesController@sample');
-
-    Route::get('about/{id}', 'PagesController@show');
-
-    Route::get('sample1', 'PagesController@sample1');
-
-	
-	
-	
-	//Sinthujan's Routes
-	
-	//Artist Dashboard
-    Route::get('/dboard','Artist\ArtMBoardController@viewPage');
-
-    //Send Mail
-    Route::post('/cMail','Artist\ArtsMailController@sendMail');
-
-    //Main orders management
-    Route::get('/ArtMainOrders','Artist\ArtsOrdersController@ViewAOrders');
-    Route::get('/ArtMainOrdersC', 'Artist\ArtsOrdersController@ViewCOrders');
-    Route::get('/ArtMainOrdersO', 'Artist\ArtsOrdersController@ViewOOrders');
-    Route::get('/ArtOrdCustRating', 'Artist\ArtsOrdersController@ViewCusRatOrd');
-    Route::get('/chOrdeStat/{ordID}','Artist\ArtsOrdersController@UpdOrderStat');
-    Route::get('/canCusOrd/{ordID}','Artist\ArtsOrdersController@CancOrder');
-    Route::get('/viewOrDets={ordID}','Artist\ArtsOrdersController@viewDets');
-
-    //Deadline assingment management
-    Route::get('/ArtAsDead','Artist\ArtsOrdersController@ViewOOrdersDD');
-    Route::post('/asDDate','Artist\ArtsOrdersController@UpOrdDD');
-
-    //Template Management
-    Route::get('/aitem','Artist\ArtsItemsController@loadDets');
-    Route::post('aitem/add','Artist\ArtsItemsController@addItems');
-    Route::get('/chIteStat/{itID}','Artist\ArtsItemsController@chItemStatus');
-    Route::post('/upDatePrice','Artist\ArtsItemsController@upPrices');
-
-    //Report generation
-    Route::get('/artRep', ['uses' =>'Artist\ArtsReportManager@index', 'as' => 'Report']);        //For Payment report
-    Route::post('/CpRep', ['uses' =>'Artist\ArtsReportManager@genCPReport']);
-    Route::post('/CCpRep',['uses' =>'Artist\ArtsReportManager@genCCPReport']);
-    Route::post('/itRep',['uses' =>'Artist\ArtsReportManager@genItReport']);
-    Route::post('/ordRep',['uses' =>'Artist\ArtsReportManager@genORDReport']);
-
-    //View chart for payments
-    Route::any('/retColData', [ 'uses'=>'Artist\ArtsChartController@colData']);
-
-    //For ViewPageCount
-    Route::any('/artPView','Artist\ArtsPageViewController@viewItemCount');
-    Route::any('/retPViewDate',['uses' => 'Artist\ArtsPageViewController@retGraphData']);
+    //
 });
+
+//Route::get('/',function()
+//{
+//    return View::make('pages.home');
+//});
+
+Route::get('/','mPageController@viewImages');
+Route::get('/ArtMainOrders','Artist\ArtsController@ViewAOrders');
+Route::get('/ArtMainOrdersC', 'Artist\ArtsController@ViewCOrders');
+Route::get('/ArtMainOrdersO', 'Artist\ArtsController@ViewOOrders');
+Route::get('/chOrdeStat/{ordID}','Artist\ArtsController@UpdOrderStat');
+Route::get('/ArtMainCal','Artist\ArtsController@ViewCal');//Calendar path
+Route::get('/login', 'discountController@rlogin');
+
+
+
+
+Route::get('/displaydiscount','Discount\discountController@displaydiscount');
+Route::get('/assignpromotion', 'Discount\discountController@assignpromotion');
+Route::get('/viewpromotion','Discount\discountController@viewpromotion');
+
+
+//Route::get('/enterpromotion', 'Discount\discountController@enterpromotion');
+//Route::get('/registerpromotion', 'Discount\discountController@registerpromotion');
+
+
+Route::put('/addDiscount', 'Discount\discountController@addDiscount');
+Route::post('/viewDiscount', 'Discount\discountController@viewDiscount');
+Route::post('/enterpromotion', 'Discount\discountController@enterpromotion');
+Route::post('/regpromotion', 'Discount\discountController@regpromotion');
+Route::put('/setpromotion','Discount\discountController@setpromotion');
+
+Route::get('/testmesage', 'Discount\discountController@testmesage');
+
+
+Route::group(['middleware' => 'web'], function () {
+    Route::auth();
+
+    Route::get('/home1', 'HomeController@index');
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -59,34 +59,4 @@ class EventModel extends Model implements Event
     {
         return $this->end;
     }
-
-    /**
-     * Get the color for event
-     *
-     * @return string
-     */
-    public function getColor()
-    {
-        return $this->color;
-    }
-
-    /**
-     * Get the color for event
-     *
-     * @return string
-     */
-    public function getURL()
-    {
-        return $this->url;
-    }
-
-    /**
-     * Get the descriptition for the event
-     *
-     * @return string
-     */
-    public function getDescrip()
-    {
-        return $this->description;
-    }
 }
