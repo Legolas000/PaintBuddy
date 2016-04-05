@@ -1,0 +1,11 @@
+
+
+
+{{$catDets->catName}}
+
+
+
+
+{{$catDets->itName}}
+
+
