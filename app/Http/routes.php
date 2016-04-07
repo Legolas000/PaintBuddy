@@ -101,33 +101,39 @@ Route::group(['middleware' => ['web']], function () {
 
     //{{Mayura's Routes}}
 
+    //{{Mayura's Routes}}
+
+    //routes according to roles
+    Route::get('admin', ['middleware' => ['role:admin'],'uses' => 'Artist\ArtMBoardController@viewPage' ]);
+    Route::get('myorders', ['middleware' => ['role:customer'],'uses' => 'User\OrderController@getOrder' ]);
+    Route::get('myorderView.{id}', ['middleware' => ['role:customer'],'uses' => 'User\OrderController@myorderView' ]);
+    Route::get('deactive', ['middleware' => ['role:customer'],'uses' => 'User\RegisterController@deactive' ]);
+    Route::get('deactive_reason', ['middleware' => ['role:customer'],'uses' => 'User\MailController@deactive' ]);
+    Route::get('item_review.{itID}', ['middleware' => ['role:customer'],'uses' => 'User\OrderController@get_item_review' ]);
+    Route::get('item_list', ['middleware' => ['role:customer'],'uses' => 'User\OrderController@get_item_list' ]);
+    Route::get('review_add', ['middleware' => ['role:customer'],'uses' => 'User\OrderController@add_item_review' ]);
+
+
+    //routes for all users(both customer and admin can use)
     Route::resource('register', 'User\RegisterController@index');
     Route::resource('/login','User\RegisterController@getLogin');
     Route::resource('/myaccount','User\RegisterController@getAccount');
-    Route::resource('/myorders','User\OrderController@getOrder');
     Route::resource('/ResetPassword','User\MailController@getPassword');
     Route::resource('violate', 'User\RegisterController@postLogin');
     Route::resource('/home','User\RegisterController@getHome');
     Route::resource('/logout','User\RegisterController@getlogout');
-    //Route::resource('/logout','User\RegisterController@getlogout');
-    Route::get('/myorderView.{id}','User\OrderController@myorderView');
-    //get deactive page to send mail
-    Route::resource('/deactive', 'User\RegisterController@deactive');
-    //get deactive reason page
-    Route::resource('/deactive_reason', 'User\MailController@deactive');
-    Route::get('/item_review.{itID}', 'User\OrderController@get_item_review');
     Route::resource('/item_list', 'User\OrderController@get_item_list');
-
     Route::resource('register_store', 'User\RegisterController@store');
     Route::post('image','User\MailController@image');
-    Route::resource('review_add', 'User\OrderController@add_item_review');
     Route::resource('/change_details','User\RegisterController@chprofile');
     Route::resource('/change_password','User\RegisterController@newpwd');
     Route::resource('/email_reset_password','User\MailController@postResetPassword');
     Route::resource('/email_deactive','User\MailController@postDeactive');
     Route::resource('email_reactive','User\MailController@postActive');
     Route::resource('reactive','User\RegisterControll@Active');
-   // Route::resource('pdf/{ID}','User\OrderController@makePDF');
+    Route::resource('pdf/{ID}','User\OrderController@makePDF');
+
+
 
 
 
