@@ -31,12 +31,13 @@ OrderController extends Controller
      */
     public function getOrder() {
 
-        $results = DB::table('itemorders')
-            ->join('orders', 'itemorders.ordID', '=', 'orders.ordID')
-            ->select('orders.ordID', 'orders.ordDate', 'orders.DueDate', 'itemorders.qty', 'orders.status')
+        $results = DB::table('orders')
+           // ->join('orders', 'itemorders.ordID', '=', 'orders.ordID')
+            ->select('ordID', 'ordDate', 'DueDate',  'orders.status')
             ->orWhere(function($query) {
-                $query->where('orders.custID', '=', Auth::user()->email);
+                $query->where('custID', '=', Auth::user()->email);
             })
+            //->distinct()
             ->get();
         return view('pages/User/login/customer_order')->with('results', $results);
 
@@ -153,28 +154,18 @@ OrderController extends Controller
             ->where('orders.ordID', '=', $id)
             ->get();
 
-        $parameter = array();
-        foreach($results as $res) {
-            $parameter['id'] =  $res->itID;
-            $parameter['name'] =  $res->itName;
-            $parameter['desc'] =  $res->itDescrip;
-            $parameter['price'] =  $res->price;
-            $parameter['qty'] =  $res->qty;
-            $parameter['img'] =  $res->imName;
-        }
+       
 
-        //var_dump($parameter['img']);
-
- //echo $results{'itID'} ;
-        //return $results;
-
+//echo $parameter[0][3];
+     //  return $results;
+       
         /*$parameter = array();
         $parameter['param'] = "Hello World!!";
 
         $pdf = PDF::loadView('print',$parameter);
         return $pdf->stream();*/
       //return  $results["itID"];
-       $pdf = PDF::loadView('pages.User.print',$parameter);
+        $pdf = PDF::loadView('pages.User.print', compact('results'))->setPaper('a4')->setOrientation('landscape');
         return $pdf->stream();
     }
 }
