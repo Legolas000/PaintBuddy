@@ -46,14 +46,16 @@ class RegisterController extends Controller
         return view('pages/User/login/myAccount');
     }
 
+    public function getHome(){
+        return view('pages/User/home');
+    }
+
     /**
      * @auther mayura
      * getting main-home page
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function getHome(){
-        return view('pages/User/home');
-    }
+    
 
     /**
      * @auther mayura
@@ -145,7 +147,8 @@ class RegisterController extends Controller
                 });
 
                 $name = Input::get('FirstName');
-                return view('pages/User/home', ['message' => $name . ' You have successfully registered .' . 'login to continue']);
+                //return view('pages/User/home', ['message' => $name . ' You have successfully registered .' . 'login to continue']);
+                return redirect('/')->with('message',$name . ' You have successfully registered .' . 'login to continue');
             }
         }
     }
@@ -278,8 +281,8 @@ class RegisterController extends Controller
 
             if (Auth::attempt(array('email' => $email, 'password' => $password,'status'=>1))) {
 
-                if(Auth::user()->role=='customer')return redirect('myaccount');
-                if(Auth::user()->role=='admin')return view('pages.User');   //Check this
+                if(Auth::user()->role=='customer')return redirect('/');
+                if(Auth::user()->role=='admin')return redirect('admin');   //Check this
             }
             elseif (Auth::attempt(array('email' => $email, 'password' => $password,'status'=>0))) {
 
@@ -288,7 +291,8 @@ class RegisterController extends Controller
 
             } else {
 
-                return view('pages/User/login/login', ['status' => 'Password you have entered is incorrect!']);
+               // return view('pages/User/login/login', ['status' => 'Password you have entered is incorrect!']);
+                return redirect()->back()->with('status' , 'Password you have entered is incorrect!');
             }
         }
     }
@@ -304,6 +308,8 @@ class RegisterController extends Controller
     {
         Auth::logout();
         //return view('pages/User/home',['message' => 'You are logged out now']);
-        return redirect('home')->with('msg','You are logged out now');
+        return redirect('/')->with('msg','You are logged out now');
     }
+
+    
 }
