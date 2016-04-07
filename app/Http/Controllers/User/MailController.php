@@ -17,6 +17,10 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
 
+
+use App\deactive;
+
+
 class MailController extends Controller
 {
     /**
@@ -68,16 +72,22 @@ class MailController extends Controller
                 ->where('email', $email)
                 ->update(['password' => $pwd]);
 
-            $data = ['title' => 'Welcome to PaintBuddy!!'];
 
-          /*  Mail::send('pages/User/email/password', $data, function ($m)  {
-                $m->to(Input::get('email'));
-                $m->subject('PaintBuddy account password reset');
-            });*/
+            if($status==0)
+                //return view('pages/User/passwod/setpassword',['status' =>' Please use registered email address']);
+                return redirect('email_reset_password')->with('status',' Please use registered email address');
+            else{
+                $data = ['title' => 'Welcome to PaintBuddy!!'];
 
-            if($status==0)return view('pages/User/passwod/setpassword',['status' =>' Please use registered email address']);
-            else
-                return view('pages/User/home',['message' =>' Your password has been changed . Chech your email']);
+                Mail::send('pages/User/email/password', $data, function ($m)  {
+                    $m->to(Input::get('email'));
+                    $m->subject('PaintBuddy account password reset');
+                });
+
+                // return view('pages/User/home',['message' =>' Your password has been changed . Chech your email']);
+                return redirect('/')->with('message' ,' Your password has been changed . Chech your email');
+            }
+
         }
     }
 
@@ -110,11 +120,11 @@ class MailController extends Controller
                         ->where('email','=', Auth::user()->email)
                         ->update(['status' => 0]);
 
-                   /* $data = ['title' => 'Welcome to PaintBuddy!!'];
+                    $data = ['title' => 'Welcome to PaintBuddy!!'];
                     Mail::send('pages/User/email/deactive', $data, function ($m) {
                         $m->to(Auth::user()->email);
                         $m->subject('PaintBuddy account has been deactivated');
-                    });*/
+                    });
 
                     return redirect('logout');
                 }else
@@ -165,12 +175,13 @@ class MailController extends Controller
 
             $data = ['title' => 'Welcome to PaintBuddy!!'];
 
-          /*  Mail::send('pages/User/email/reactive', $data, function ($m) {
-                $m->to(Auth::user()->email);
+           Mail::send('pages/User/email/reactive', $data, function ($m) {
+                $m->to(Input::get('email'));
                 $m->subject('PaintBuddy account has been reactivated');
-            });*/
+            });
 
-            return view('pages/User/home', ['message' => '  Your PaintBuddy account has been reactivated. ']);
+           // return view('pages/User/home', ['message' => '  Your PaintBuddy account has been reactivated. ']);
+            return redirect('/')->with('message','  Your PaintBuddy account has been activated. Login to continue !!!!');
         }
         else
 
