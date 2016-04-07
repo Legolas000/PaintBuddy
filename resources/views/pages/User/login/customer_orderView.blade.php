@@ -74,7 +74,7 @@
                                         <tr><td>#<?=$result->itID ?></td>
                                         <td><?=$result->itName ?></td>
                                         <td><?=$result->itDescrip ?></td>
-                                        <td><?=$result->price ?></td><
+                                        <td><?=$result->price ?></td>
                                         <td><?=$result->qty ?></td>
                                         </tr>
 
