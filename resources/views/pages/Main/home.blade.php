@@ -6,19 +6,22 @@
     <?php
     ini_set('xdebug.max_nesting_level', 200);?>
 
-    @if(isset($message))
-        <script src="js/sweetalert.min.js"></script>
-        <link rel="stylesheet" type="text/css" href="css/sweetalert.css">
+    <link rel="stylesheet" type="text/css" href="css/sweetalert.css">
+    <script src="js/sweetalert.min.js"></script>
+
+
+    @if (session('msg'))
         <script>
-            sweetAlert('{!! $message !!}', "You clicked the button!");
+            sweetAlert('{{ session('msg') }}', "You clicked the button!");
         </script>
     @endif
 
-    @if(session('msg'))
+    @if (session('message'))
         <script>
-            alert("asdasdsadasd");
+            sweetAlert('{{ session('message') }}', "You clicked the button!", "success");
         </script>
     @endif
+
 
 
     <div id="all">
