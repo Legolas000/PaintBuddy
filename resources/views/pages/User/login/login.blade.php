@@ -5,11 +5,19 @@
     ini_set('xdebug.max_nesting_level', 200);
      ?>
 
-    <?php if(isset($status)){?>
-    <script>
-        swal('{{$status  }}', "You clicked the button!", "error");
-    </script>
-    <?php } ?>
+    <link rel="stylesheet" type="text/css" href="css/sweetalert.css">
+    <script src="js/sweetalert.min.js"></script>
+
+
+
+
+    @if (session('status'))
+        <script>
+            sweetAlert('{{ session('status') }}', "You clicked the button!", "error");
+        </script>
+    @endif
+
+
 
     <div class="col-md-8">
         <div class="box">
