@@ -7,11 +7,11 @@
     <style>
         table {
             border-collapse: collapse;
-            width: 50%;
+            width: 100%;
         }
 
         th, td {
-            padding: 8px;
+            padding: 3px;
             text-align: left;
             border-bottom: 1px solid #ddd;
         }
@@ -23,45 +23,50 @@
             padding: 10px;}
     </style>
 
-<body>
+
 <div class="center">
 <h1>PaintBuddy</h1>
+
+
 <p>
+<table>
 
+        <div class="table-responsive">
+            <table class="table table-hover">
 
-    <img src="images/<?php echo $img ?>" style="width:228px;height:228px"/>
-
-    <table >
-
-        <p>
-        <tr>
-            <th>Ordered by</th><td><?php echo $cname ?></td>
-        </tr>
-
-        <tr>
-            <th>Item ID</th><td>#<?php echo $id ?></td>
-        </tr>
-        <tr>
-            <th>Item Name</th><td><?php echo $name ?></td>
-        </tr>
-        <tr>
-            <th>Description</th><td><?php echo $desc ?></td>
-        </tr>
-        <tr>
-            <th>Price</th><td><?php echo $price ?></td>
-        </tr>
-        <tr>
-            <th>Quantity</th><td><?php echo $qty ?></td>
-        </tr>
-        <tr>
-            <th>Ordered date</th><td><?php echo $date ?></td>
-        </tr>
-        <tr>
-            <th>Status</th><td><?php echo $status ?></td>
-        </tr>
+                <tr>
+                    <th>Image</th>
+                    <th>Item ID</th>
+                    <th>Item Name</th>
+                    <th>Ordered Date</th>
+                    <th>Description</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Status</th>
+                </tr>
+                    <tbody>
+                        @foreach ($results as $item)
+                           <tr>
+                               <td><img src="img/tempEng/{{ $item->imName }}" style="width:100px;height:100px"/></td>
+                               <td> {{ $item->itID }}</td>
+                               <td> {{ $item->itName }}</td>
+                               <td> {{ $item->ordDate }}</td>
+                               <td> {{ $item->itDescrip }}</td>
+                               <td> {{ $item->price }} LKR</td>
+                               <td> {{ $item->qty }}</td>
+                               <td> {{ $item->status }}</td>
+                           </tr>
+                        @endforeach
+                    </tbody>
 
     </table>
+            <p>
 
+
+            @if (Auth::check())
+                <b>Ordered By : </b> <?php echo Auth::user()->name;?>
+            @endif
 </div>
-</body>
+
 </html>
+
