@@ -101,6 +101,7 @@
 
                                         </tr>
                                         </tfoot>
+                                        <input type="hidden" name="totalamt" value="{{$total}}">
                                     </table>
 
                             </div>
