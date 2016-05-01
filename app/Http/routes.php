@@ -22,6 +22,7 @@
 */
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Input;
 
 Route::group(['middleware' => ['web']], function () {
 
@@ -195,6 +196,20 @@ Route::group(['middleware' => ['web']], function () {
     //sending mail functions
     Route::post('sendemail', function (\Illuminate\Support\Facades\Request $request)
     {
+        
+         $totalamt=Input::get('totalamt');
+        $rating=Auth::user()->rating;
+        if($totalamt>10000 && $totalamt<50000)
+            $rating=$rating+0.5;
+        elseif ($totalamt>50000)
+            $rating=$rating+1;
+
+
+
+        DB::table('users')
+            ->where('email', Auth::user()->email)
+            ->update(['rating' =>  $rating]);
+        
         //        return session()->get('tamount');
         $products = session()->get('items');
         DB::table('payments')->insert(["payDate"=>\Carbon\Carbon::now(), "totalAmount" => session()->get('tamount'), "payMethod" => session()->get('pMethod')]);
