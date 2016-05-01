@@ -209,5 +209,5 @@ Route::group(['middleware' => ['web']], function () {
         return view('pages.main.home');
 
     });
-
+Route::resource('pdf/{ID}','User\OrderController@makePDF');
 });
