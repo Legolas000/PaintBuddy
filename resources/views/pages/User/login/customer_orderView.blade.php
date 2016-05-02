@@ -52,11 +52,12 @@
                     <div class="box">
                 @if (is_array($results))
                     {{--@foreach ($results as $result)--}}
-                       <h1>Order #<?=$result->ordID ?></h1><a href="/pdf/<?php echo $result->ordID ?>" class="btn btn-primary btn-sm">pdf</a>
+                       <h1>Order #<?=$result->ordID ?></h1>
                         <p class="lead">Order #<?=$result->ordID ?> was placed on <strong><?=$result->ordDate ?></strong> and is currently <strong><?=$result->status ?></strong>.</p>
                         <p class="text-muted">If you have any questions, please feel free to <a href="#">contact us</a>, our customer service center is working for you 24/7.</p>
                     {{--@endforeach--}}
                 @endif
+
                             <div class="table-responsive">
                                 <table class="table table-hover">
                                     <thead>
@@ -74,7 +75,7 @@
                                         <tr><td>#<?=$result->itID ?></td>
                                         <td><?=$result->itName ?></td>
                                         <td><?=$result->itDescrip ?></td>
-                                        <td><?=$result->price ?></td>
+                                        <td><?=$result->price ?> LKR</td><
                                         <td><?=$result->qty ?></td>
                                         </tr>
 
@@ -82,6 +83,8 @@
                                     @endif
                                 </tbody>
                                 </table>
+                                <a href="/pdf/<?php echo $result->ordID ?>" class="btn btn-primary btn-sm">Download</a>
+
                             </div>
                     </div></div>
                         <!-- /.table-responsive -->
