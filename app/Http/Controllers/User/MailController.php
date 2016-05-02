@@ -80,6 +80,7 @@ class MailController extends Controller
                 $data = ['title' => 'Welcome to PaintBuddy!!'];
 
                 Mail::send('pages/User/email/password', $data, function ($m)  {
+                     $m->from('paintbuddyProj@gmail.com');
                     $m->to(Input::get('email'));
                     $m->subject('PaintBuddy account password reset');
                 });
@@ -122,6 +123,7 @@ class MailController extends Controller
 
                     $data = ['title' => 'Welcome to PaintBuddy!!'];
                     Mail::send('pages/User/email/deactive', $data, function ($m) {
+                         $m->from('paintbuddyProj@gmail.com');
                         $m->to(Auth::user()->email);
                         $m->subject('PaintBuddy account has been deactivated');
                     });
@@ -176,6 +178,7 @@ class MailController extends Controller
             $data = ['title' => 'Welcome to PaintBuddy!!'];
 
            Mail::send('pages/User/email/reactive', $data, function ($m) {
+                $m->from('paintbuddyProj@gmail.com');
                 $m->to(Input::get('email'));
                 $m->subject('PaintBuddy account has been reactivated');
             });
