@@ -148,7 +148,7 @@ OrderController extends Controller
 
         $results = DB::table('itemorders')
             ->join('items', 'itemorders.itID', '=', 'items.itID')
-            ->join('payments', 'itemorders.ordID', '=', 'payments.pID')
+            //->join('payments', 'itemorders.ordID', '=', 'payments.pID')
             ->join('orders', 'itemorders.ordID', '=', 'orders.ordID')
             ->select('items.itID', 'items.itName', 'items.imName','items.itDescrip', 'items.price', 'orders.ordID', 'orders.status', 'orders.ordDate', 'itemorders.qty', 'orders.DueDate')
             ->where('orders.ordID', '=', $id)
