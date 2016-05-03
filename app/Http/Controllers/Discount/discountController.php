@@ -1,20 +1,31 @@
-<?php
-
+<?php 
 namespace App\Http\Controllers\Discount;
 
 use DB;
-use auth; 
+//use Illuminate\Http\Request;
+//use auth; 
 use App;
+use App\User;
+use Illuminate\Foundation\Validattion\ValidateRequests;
 use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\View\Middleware\ShareErrorsFromSession;
+use Illuminate\Support\MessageBag;
 use App\Http\Controllers\Controller;
 use Illuminate\HttpResponse;
+use Illuminate\Http\Request\CreateRegisterRequest;
+use Illuminate\Routing\Route;
 use Mail;
-use Session;
+use Illuminate\Routing\Redirector;
 use Storage;
 use File;
 use Illuminate\Support\Facades\Request;
+use App\Discount;
+use Illuminate\Support\Facades\Auth;
 
+//use Illuminate\Support\Facades\Output;
 
 
 class discountController extends Controller{
@@ -324,14 +335,16 @@ class discountController extends Controller{
 		$emails =  DB::table('users')->select('email')->get();
 		$data = ['heading' => 'Welcome to PaintBuddy!!'];
 		foreach ($emails as $mails) {
-			Mail::send('pages/discount/promotionpdf', array("table" => $table), function($message) use($mails) {
+			Mail::send('pages/discount/promotionpdf', array("table" => $table),$mails, function($message) {
 				$message->from('paintbuddyProj@gmail.com');
-				$message->to($mails->email)	
-				->subject('Paint Buddy Promotion');	
+				$message->to($mails)	
+				->subject('Paint Buddy Promotion');		//'arhamshan625@gmail.com'
 			});
 		}
 		return view('pages\Discount\promotionpdf', ['table'=>$table ] );
 	}
-
 }
 
+
+#DB::table('name')->groupBy('column')->get()
+/*A great opportunity to win a big price...!!!! You have to just register for promotion only... Winner will be selected in random selection.. */
