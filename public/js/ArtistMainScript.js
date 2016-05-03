@@ -18,7 +18,23 @@ jQuery(window).load(function() {
             $("#iName").val($.trim($(this).closest('tr').children()[2].textContent));
             $("#iDescrip").val($.trim($(this).closest('tr').children()[3].textContent));
             $("#iSize").val($.trim($(this).closest('tr').children()[4].textContent));
-            $("#iPrice").val($.trim($(this).closest('tr').children()[5].textContent));
+            $("#iPrice").val($.trim($(this).closest('tr').children()[6].textContent));
+        });
+
+        $('table tbody tr  td.teOrder').on('click', function () {
+            var url = window.location.href.split("/").pop()
+            $("#pricUpModalTemp").modal("show");
+            $("#iID").val($.trim($(this).closest('tr').children()[0].textContent));
+            if(url == 'aTempDes') {
+                $("#iName").val($.trim($(this).closest('tr').children()[2].textContent));
+                $("#iDescrip").val($.trim($(this).closest('tr').children()[3].textContent));
+                $("#iPrice").val($.trim($(this).closest('tr').children()[4].textContent));
+            }
+            else if(url == 'aTempBac'){
+                $("#iName").val($.trim($(this).closest('tr').children()[3].textContent));
+                $("#iDescrip").val($.trim($(this).closest('tr').children()[4].textContent));
+                $("#iPrice").val($.trim($(this).closest('tr').children()[5].textContent));
+            }
         });
 
         $('table tbody tr  td.artOrdRe').on('click', function () {
@@ -42,7 +58,8 @@ jQuery(window).load(function() {
             "order" : [[1, "desc" ]]
         });
         $("#ordDetails").DataTable();
-
+        $("#CusrTab").DataTable();
+        $("#aTempTab").DataTable();
 
         $("#compose-textarea").wysihtml5();
         $('#pRepdRange').daterangepicker({
@@ -70,6 +87,29 @@ jQuery(window).load(function() {
             });
         });
 
+
+        $('#aTempTab tbody').on('click', 'tr', function () {
+            $(document).ready(function () {
+                $(this).find('a.image-link').magnificPopup({
+                    type: 'image',
+                    closeOnContentClick: true,
+                    closeBtnInside: false,
+                    fixedContentPos: true,
+                    mainClass: 'mfp-no-margins mfp-with-zoom', // class to remove default margin from left and right side
+                    image: {
+                        verticalFit: true
+                    },
+                    zoom: {
+                        enabled: true,
+                        duration: 300 // don't foget to change the duration also in CSS
+                    }
+                });
+            });
+        });
+
+
+
+
         $('#ddMask').on('change', function () {
             $('#asnBtn').prop('disabled', false);
         });
@@ -83,10 +123,15 @@ jQuery(window).load(function() {
         $('#iPrice').on('change', function () {
             $('#upPBtn').prop('disabled', false);
         });
+        $('#uiStk').on('change', function () {
+            $('#upPBtn').prop('disabled', false);
+        });
         $('#pricUpModal').on('hidden.bs.modal', function () {
             $('#upPBtn').prop('disabled', true);
         });
-
+        $('#pricUpModalTemp').on('hidden.bs.modal', function () {
+            $('#upPBtn').prop('disabled', true);
+        });
 
     });
 });
@@ -113,6 +158,21 @@ function confirmComOrd(ordID) {
         callback: function ($this, type, ev) {
             if(type === 'yes')
                 window.location = '/chOrdeStat/'+ordID;
+            else
+                return false;
+        }
+    });
+    return false;
+}
+
+
+function confirmRemTemp(itID) {
+    Lobibox.confirm({
+        title: "Confirm item removal",
+        msg: "Are you sure you want to remove this item?",
+        callback: function ($this, type, ev) {
+            if(type === 'yes')
+                window.location = '/chTempStatus/'+itID;
             else
                 return false;
         }

@@ -14,6 +14,7 @@
                 <div class="icon">
                     <i class="fa fa-shopping-cart"></i>
                 </div>
+                <a href="{{action('Artist\ArtsOrdersController@ViewOOrders')}}" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
             </div>
         </div><!-- ./col -->
         <div class="col-lg-3 col-xs-6">
@@ -26,6 +27,7 @@
                 <div class="icon">
                     <i class="ion ion-briefcase"></i>
                 </div>
+                <a href="{{action('Artist\ArtsItemsController@loadDets')}}" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
             </div>
         </div><!-- ./col -->
         <div class="col-lg-3 col-xs-6">
@@ -38,6 +40,7 @@
                 <div class="icon">
                     <i class="ion ion-person-add"></i>
                 </div>
+                <a href="{{action('Artist\ArtUserDetsController@getActiveUsrDets')}}" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
             </div>
         </div><!-- ./col -->
         <div class="col-lg-3 col-xs-6">
@@ -50,6 +53,7 @@
                 <div class="icon">
                     <i class="ion ion-pie-graph"></i>
                 </div>
+                <a href="{{action('Artist\ArtsPageViewController@viewItemCount')}}" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
             </div>
         </div><!-- ./col -->
 

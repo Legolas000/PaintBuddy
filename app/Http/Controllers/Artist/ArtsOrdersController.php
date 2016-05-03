@@ -30,7 +30,11 @@ class ArtsOrdersController extends Controller
     public function ViewAOrders()
     {
         $order = Orders::all();
-        $calendar = $this->ViewOrCal();
+        $event = DB::table('orders')
+            ->join('users','users.email','=','orders.custID')
+            ->select('users.*','orders.DueDate AS start','orders.DueDate AS end','orders.ordID AS id','orders.ordDate','DueDate AS chkDate','orders.status AS title')
+            ->get();
+        $calendar = $this->ViewCal($event);
         return view('pages/Artist/artOrders')->with('order',$order)->with('calendar',$calendar);
     }
 
@@ -43,7 +47,11 @@ class ArtsOrdersController extends Controller
     public function ViewCOrders()
     {
         $order = Orders::where('status','=','Completed')->get();
-        $calendar = $this->ViewOrCal();
+        $event = DB::table('orders')
+            ->join('users','users.email','=','orders.custID')
+            ->select('users.*','orders.DueDate AS start','orders.DueDate AS end','orders.ordID AS id','orders.ordDate','DueDate AS chkDate','orders.status AS title')
+            ->get();
+        $calendar = $this->ViewCal($event);
         return view('pages/Artist/artOrders')->with('order',$order)->with('calendar',$calendar);
     }
 
@@ -56,7 +64,11 @@ class ArtsOrdersController extends Controller
     public function ViewOOrders()
     {
         $order = Orders::where('status','=','Ongoing')->get();
-        $calendar = $this->ViewOrCal();
+        $event = DB::table('orders')
+            ->join('users','users.email','=','orders.custID')
+            ->select('users.*','orders.DueDate AS start','orders.DueDate AS end','orders.ordID AS id','orders.ordDate','DueDate AS chkDate','orders.status AS title')
+            ->get();
+        $calendar = $this->ViewCal($event);
         return view('pages/Artist/artOrders')->with('order',$order)->with('calendar',$calendar);
     }
 
@@ -69,22 +81,22 @@ class ArtsOrdersController extends Controller
     public function ViewOOrdersDD()
     {
         $order = Orders::where('status','=','Ongoing')->get();
-        $calendar = $this->ViewDCal();
+        $event = DB::table('orders')
+            ->join('users','users.email','=','orders.custID')
+            ->select('users.*','orders.DLineDate AS start','orders.DLineDate AS end','orders.ordID AS id','orders.ordDate','DueDate AS chkDate','orders.status AS title')
+            ->get();
+        $calendar = $this->ViewCal($event);
         return view('pages/Artist/artOrdersAsDate')->with('order',$order)->with('calendar',$calendar);
     }
 
+
     /**
-     * Returns calendar object with order's deadline assigned.
-     *
-     * @author Sinthujan G.
+     * Returns calendar object based on the event object passed.
+     * @param $event
      * @return mixed
      */
-    public function ViewDCal()
+    public function ViewCal($event)
     {
-        $event = DB::table('orders')
-                ->join('users','users.email','=','orders.custID')
-                ->select('users.*','orders.DLineDate AS start','orders.DLineDate AS end','orders.ordID AS id','orders.ordDate','DueDate AS chkDate','orders.status AS title')
-                ->get();
         $events = array();
         foreach ($event as $eve) {
             $itemDets = DB::table('items')
@@ -183,120 +195,6 @@ class ArtsOrdersController extends Controller
         return $calendar;
     }
 
-
-    /**
-     * Returns calendar object with order's duedate assigned.
-     *
-     * @author Sinthujan G.
-     * @return mixed
-     */
-    public function ViewOrCal()
-    {
-        $event = DB::table('orders')
-            ->join('users','users.email','=','orders.custID')
-            ->select('users.*','orders.DueDate AS start','orders.DueDate AS end','orders.ordID AS id','orders.ordDate','DueDate AS chkDate','orders.status AS title')
-            ->get();
-        $events = array();
-        foreach ($event as $eve) {
-            $itemDets = DB::table('items')
-                ->join('itemorders','itemorders.itID','=','items.itID')
-                ->join('orders','orders.ordID','=','itemorders.ordID')
-                ->select('items.*','itemorders.qty')
-                ->where('itemorders.ordID','=',$eve->id)
-                ->get();
-
-            if($eve->title == 'Completed')
-                $color='#00a65a';
-            elseif(Carbon::today()->subDay()->gte(Carbon::parse($eve->start)) AND $eve->title == 'Ongoing')
-                $color = '#f39c12';
-            else {
-                if (Carbon::today()->addDays(2)->eq(Carbon::parse($eve->start)) OR Carbon::today()->addDays(1)->eq(Carbon::parse($eve->start))
-                    OR Carbon::today()->eq(Carbon::parse($eve->start))) {
-                    $color = '#f56954';
-                }
-                else
-                    $color = '#00c0ef';
-            }
-            $name = $eve->name." ".$eve->lname;
-            $eMail = Crypt::encrypt($eve->email);
-            $events[] = Calendar::event(
-                "Order ID:-".$eve->id,
-                1,
-                $eve->start,
-                $eve->end,
-                $eve->id,
-                $color,
-                '',
-                "<script>
-                    $(\"#itOrdersTab\").DataTable();
-                    $(\"#getOrdModBtn\").html(\"<button type=button class='btn btn-danger pull-left' onclick=document.location.href='/viewOrDets=$eve->id'>Get more Details</button>\");
-                 </script>
-                <div class=\"tabbable\">
-                    <ul class=\"nav nav-tabs\">
-                    <li class=\"active\"><a href=\"#tab1\" data-toggle=\"tab\"><span style=\"color:black\">Customer Details</span></a></li>
-                    <li><a href=\"#tab2\" data-toggle=\"tab\"><span style=\"color:black\">Order Details</span></a></li>
-                    </ul>
-                    <div class=\"tab-content\">
-                        <div class=\"tab-pane active\" id=\"tab1\">
-                          <label for='ordID'>Customer Name</label>
-                          <input type='text' class='form-control' readonly value=\"$name\">
-                          <label for='ordID'>Email</label>
-                          <a href=\"#emailOrd\" style=\"border-style:solid;border-color:#EBEBE4;background-color:#EBEBE4;\" class='form-control' data-toggle=\"modal\"><i class=\"fa fa-envelope\"></i> &nbsp;&nbsp;$eve->email</a>
-                          <label for='ordID'>Phone Number</label>
-                          <input type='text' class='form-control' readonly value=\"$eve->PhoneNo\">
-                          <label for='ordID'>Ordered Date</label>
-                          <input type='text' class='form-control' readonly value=\"$eve->ordDate\">
-                          <label for='ordID'>Due Date</label>
-                          <input type='text' class='form-control' readonly value=\"$eve->chkDate\">
-                        </div>
-                        <div class=\"tab-pane\" id=\"tab2\">
-                            <table  class=\"table table-condensed table-hover table-bordered\" id=\"itOrdersTab\">
-                                <thead>
-                                <tr>
-                                    <th class=\"col-md-2 text-center\">
-                                        Item Name
-                                    </th>
-                                    <th class=\"col-md-2 text-center\">
-                                        Item Description
-                                    </th>
-                                    <th class=\"col-md-2 text-center\">
-                                        Item Size
-                                    </th>
-                                    <th class=\"col-md-2 text-center\">
-                                        Quantity
-                                    </th>
-                                    <th class=\"col-md-2 text-center\">
-                                        Price per Unit
-                                    </th>
-                                </tr>
-                                </thead>
-
-                                <tbody>
-                                ".$this->printArr($itemDets)."
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>"
-            );
-        }
-        $calendar = \Calendar::addEvents($events)
-        ->setOptions([
-            'firstDay' => 1,
-            ])
-            ->setCallbacks([
-                'eventRender' =>'function(event, element){element.attr(\'href\', \'javascript:void(0);\');}',
-                'eventClick' => 'function(event, jsEvent, view) {
-                        $(\'#modalTitle\').html(event.title);
-                        $(\'#modalBody\').html(event.description);
-                        $(\'#eventUrl\').attr(\'href\',event.url);
-                        $(\'#fullCalModal\').modal();
-                }'
-            ]);
-
-        return $calendar;
-    }
-
     /**
      * Assigns item details to a variable and returns to concatenate with the Calendar's modal content.
      *
@@ -323,7 +221,7 @@ class ArtsOrdersController extends Controller
                             $itd->qty
                         </td>
                         <td class=\"col-md-2 text-center\">
-                            $itd->price
+                            $itd->itPrice
                         </td>
                     </tr>";
         }

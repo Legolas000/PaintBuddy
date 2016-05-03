@@ -36,19 +36,19 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('/cat.{catName}','Main\mPageController@viewCatDets');
     Route::get('/viewDets.{itemID}',['uses'=>'Main\mPageController@viewItDets', 'as' =>'ViewItDets']);
     //Category View
-//    Route::get('/category', 'Main\PagesController@category');         What's this?
-
-
-
-
-
+//    Route::get('/category', 'Main\PagesController@category');      
 
     //{{Sinthujan's Route }}
+    
     //Artist Dashboard
     Route::get('/dboard','Artist\ArtMBoardController@viewPage');
 
-    //Send Mail
+    //Mail Management
+    Route::get('/getMailBox.type={type}','Artist\ArtsMailController@retMailView');
     Route::post('/cMail','Artist\ArtsMailController@sendMail');
+    Route::get('/getMail','Artist\ArtsMailController@getInbox');
+    Route::get('/viewMail.MailID={MailID}.type={type}','Artist\ArtsMailController@viewMail');
+    Route::post('/delMail','Artist\ArtsMailController@delMail');
 
     //Main orders management
     Route::get('/ArtMainOrders','Artist\ArtsOrdersController@ViewAOrders');
@@ -57,11 +57,11 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('/chOrdeStat/{ordID}','Artist\ArtsOrdersController@UpdOrderStat');
     Route::get('/viewOrDets={ordID}','Artist\ArtsOrdersController@viewDets');
 
-    //Deadline assignment management
+    //Deadline assingment management
     Route::get('/ArtAsDead','Artist\ArtsOrdersController@ViewOOrdersDD');
     Route::post('/asDDate','Artist\ArtsOrdersController@UpOrdDD');
 
-    //Template Management
+    //Item Management
     Route::get('/aitem','Artist\ArtsItemsController@loadDets');
     Route::post('aitem/add','Artist\ArtsItemsController@addItems');
     Route::get('/chIteStat/{itID}','Artist\ArtsItemsController@chItemStatus');
@@ -81,6 +81,44 @@ Route::group(['middleware' => ['web']], function () {
     //For ViewPageCount
     Route::any('/artPView','Artist\ArtsPageViewController@viewItemCount');
     Route::any('/retPViewDate',['uses' => 'Artist\ArtsPageViewController@retGraphData']);
+
+    //User details
+    Route::get('/gUsrDetsA','Artist\ArtUserDetsController@getActiveUsrDets');
+    Route::get('/gUsrDetsIA','Artist\ArtUserDetsController@getInActiveUsrDets');
+    Route::get('/gUsrDetsAd','Artist\ArtUserDetsController@getAdminUsrDets');
+    Route::get('/gUsrDetsC','Artist\ArtUserDetsController@getCustUsrDets');
+
+
+    //Settings Pages
+    Route::get('/getsPage',function(){
+        return View::make('pages.Artist.artSettingView');
+    });
+    Route::get('/exportDB','Artist\ArtSettingsController@exportDB');
+    Route::post('/importDB','Artist\ArtSettingsController@importDB');   //Doesn't work properly have a look later
+
+
+    //Exception handling
+    Route::get('/dbExcp',function(){
+        return View::make('errors.503');
+    });
+    Route::get('/imapExcp',function(){
+        return View::make('errors.503');
+    });
+    Route::get('/smailExcp',function(){
+        return View::make('errors.503');
+    });
+
+    //Template Management
+    Route::get('/aTempDes','Artist\ArtsTempController@loadDesDets');
+    Route::get('/aTempBac','Artist\ArtsTempController@loadBacDets');
+    Route::post('/aTempDes/add','Artist\ArtsTempController@addDesign');
+    Route::post('/aTempBac/add','Artist\ArtsTempController@addBack');
+    Route::post('/upTempPrice','Artist\ArtsTempController@upPrices');
+    Route::get('/chTempStatus/{id}','Artist\ArtsTempController@chTempStatus');
+
+    //Design Templates
+    Route::get('/cTemp','User\UsCustTempController@viewCusPage');
+    Route::get('/test','User\UsCustTempController@custArrDesign');
 
 
 

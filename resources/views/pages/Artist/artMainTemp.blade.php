@@ -57,7 +57,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
         #aItemTab tr,
         #artOrdersTab tr,
         #asDateTab tr,
-        #custDetsTab tr{
+        #custDetsTab tr,
+        #aTempTab tr{
             cursor: pointer;
         }
     </style>
@@ -237,7 +238,13 @@ desired effect
                 @endif
 
                 <li><a href="/dboard"><i class="fa fa-laptop"></i> <span>DashBoard</span></a></li>
-                <li><a href="/aitem"><i class="fa  fa-folder-open"></i> <span>Templates</span></a></li>
+                <li class="treeview">
+                    <a href="#"><i class="fa  fa-folder-open"></i> <span>Product Management</span> <i class="fa fa-angle-left pull-right"></i></a>
+                    <ul class="treeview-menu">
+                        <li class="active"><a href="/aitem"><i class="fa fa-circle-o"></i> <span>Items</span></a></li>
+                        <li class="active"><a href="/aTempDes"><i class="fa fa-circle-o"></i> <span>Templates</span></a></li>
+                    </ul>
+                </li>
                 <li class="treeview">
                     <a href="#"><i class="fa fa-share"></i> <span>Order Management</span> <i class="fa fa-angle-left pull-right"></i></a>
                     <ul class="treeview-menu">
@@ -245,8 +252,17 @@ desired effect
                         <li class="active"><a href="/ArtAsDead"><i class="fa fa-circle-o"></i> <span>Assign Deadlines</span></a></li>
                     </ul>
                 </li>
-                <li><a href="/artRep"><i class="fa fa-book"></i> <span>Reports</span></a></li>
+                <li><a href="/artRep"><i class="fa fa-briefcase"></i> <span>Reports</span></a></li>
                 <li><a href="/artPView"><i class="fa fa-book"></i> <span>View Count</span></a></li>
+                <li><a href="/gUsrDetsA"><i class="glyphicon glyphicon-user"></i> <span>User Details</span></a></li>
+                <li class="treeview">
+                    <a href="#"><i class="fa fa-envelope"></i> <span>Mailbox</span> <i class="fa fa-angle-left pull-right"></i></a>
+                    <ul class="treeview-menu">
+                        <li class="active"><a href="/getMailBox.type=1"><i class="fa fa-circle-o"></i> <span>Inbox</span></a></li>
+                        <li class="active"><a href="/getMailBox.type=2"><i class="fa fa-circle-o"></i> <span>Sent Mail</span></a></li>
+                    </ul>
+                </li>
+                <li><a href="/getsPage"><i class="glyphicon glyphicon-console"></i> <span>Settings</span></a></li>
             </ul><!-- /.sidebar-menu -->
         </section>
         <!-- /.sidebar -->

@@ -58,7 +58,7 @@ _________________________________________________________ -->
                 @if (Auth::check())
                     <li style="color: white">
                         <?php
-                        echo Auth::user()->name;?>@else  <a href ="/login">Login |</a>
+                        echo "<a href='/myaccount'>".Auth::user()->name."</a>";?>@else  <a href ="/login">Login |</a>
 
                     </li>
                 @endif
@@ -176,7 +176,7 @@ _________________________________________________________ -->
                 </li>
 
                 <li class="dropdown yamm-fw">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="200">Custom Design <b class="caret"></b></a>
+                    <a href="/cTemp" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="200">Custom Design <b class="caret"></b></a>
                 </li>
             </ul>
         </div>
