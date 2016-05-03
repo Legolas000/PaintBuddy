@@ -14,7 +14,12 @@
         "doctrine/dbal": "^2.5",
         "reportico/laravel-reportico": "~5.1",
         "filp/whoops": "~1.0",
-        "barryvdh/laravel-dompdf": "*"
+        "barryvdh/laravel-dompdf": "*",
+        "backup-manager/laravel": "^1.1",
+        "league/flysystem-aws-s3-v3": "^1.0",
+        "league/flysystem-dropbox": "^1.0",
+        "league/flysystem-rackspace": "^1.0",
+        "league/flysystem-sftp": "^1.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

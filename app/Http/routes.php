@@ -135,6 +135,8 @@ Route::group(['middleware' => ['web']], function () {
     Route::post('/enterpromotion', 'Discount\discountController@enterpromotion');
     Route::post('/regpromotion', 'Discount\discountController@regpromotion');
     Route::put('/setpromotion','Discount\discountController@setpromotion');
+    Route::get('/mailaboutpromotion', 'Discount\discountController@mailaboutpromotion');
+    Route::get('/testmesage', 'Discount\discountController@testmesage');
 
 
 
