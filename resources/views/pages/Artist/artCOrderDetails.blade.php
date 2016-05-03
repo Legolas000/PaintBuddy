@@ -90,7 +90,7 @@
                                                 {!! $items->qty !!}
                                                 </td>
                                                 <td class="col-md-2 text-center">
-                                                {!! $items->itPrice !!}
+                                                {!! $items->price !!}
                                                 </td>
                                             </tr>
                                         @endforeach

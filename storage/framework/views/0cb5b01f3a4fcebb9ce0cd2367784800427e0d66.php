@@ -1,8 +1,6 @@
-@extends('pages.Artist.artMainTemp')
+<?php $__env->startSection('ArtContent'); ?>
 
-@section('ArtContent')
-
-    {{--Style for browse file bootstrap style--}}
+    <?php /*Style for browse file bootstrap style*/ ?>
     <style>
         .btn-file {
             position: relative;
@@ -25,7 +23,7 @@
         }
     </style>
 
-    {{--Update Price Modal below--}}
+    <?php /*Update Price Modal below*/ ?>
     <div class="container">
         <!-- Modal -->
         <div class="modal fade modal-info" id="pricUpModal" role="dialog">
@@ -36,7 +34,8 @@
                         <h4 class="modal-title">Update Price</h4>
                     </div>
                     <div class="modal-body">
-                        {!! Form::open(array( 'url' => 'upDatePrice','class' => 'form','novalidate' => 'novalidate','files' => true)) !!}
+                        <?php echo Form::open(array( 'url' => 'upDatePrice','class' => 'form','novalidate' => 'novalidate','files' => true)); ?>
+
 
                         <div class="form-group">
                             <label for="iName">Item Name</label>
@@ -67,7 +66,8 @@
                             <button type="submit" id = "upPBtn" class="btn btn-danger send-btn center-block" disabled = "" style="align-self: center">Update</button>
                         </div>
 
-                        {!! Form::close() !!}
+                        <?php echo Form::close(); ?>
+
                     </div>
 
                     <div class="modal-footer">
@@ -80,7 +80,7 @@
     </div>
 
 
-    {{--Add item Modal below--}}
+    <?php /*Add item Modal below*/ ?>
     <div class="container">
         <!-- Modal -->
         <div class="modal fade modal-info" id="itemModal" role="dialog">
@@ -91,14 +91,17 @@
                         <h4 class="modal-title">Add Items</h4>
                     </div>
                     <div class="modal-body">
-                        {!! Form::open(array( 'url' => 'aitem/add','class' => 'form','novalidate' => 'novalidate','files' => true)) !!}
-                        <input type="hidden" name="_token" value="{{{ csrf_token() }}}" />
+                        <?php echo Form::open(array( 'url' => 'aitem/add','class' => 'form','novalidate' => 'novalidate','files' => true)); ?>
+
+                        <input type="hidden" name="_token" value="<?php echo e(csrf_token()); ?>" />
 
                         <div class="form-group">
-                            @if(isset($cats))
-                                {!! Form::Label('catLabel', 'Category:') !!}
-                                {!! Form::select('cat_Name', $cats, null, ['class' => 'form-control']) !!}
-                            @endif
+                            <?php if(isset($cats)): ?>
+                                <?php echo Form::Label('catLabel', 'Category:'); ?>
+
+                                <?php echo Form::select('cat_Name', $cats, null, ['class' => 'form-control']); ?>
+
+                            <?php endif; ?>
                         </div>
 
                         <div class="form-group">
@@ -113,7 +116,7 @@
 
                         <div class="form-group">
                             <label for="cFile">Choose File</label>
-                            <span class="btn btn-default btn-file">Browse {!! Form::file('image', null) !!}</span>
+                            <span class="btn btn-default btn-file">Browse <?php echo Form::file('image', null); ?></span>
                         </div>
 
                         <div class="form-group">
@@ -135,7 +138,8 @@
                             <button type="submit" class="btn btn-danger send-btn center-block" style="align-self: center">Add</button>
                         </div>
 
-                        {!! Form::close() !!}
+                        <?php echo Form::close(); ?>
+
                     </div>
 
                     <div class="modal-footer">
@@ -148,7 +152,7 @@
 
 <br/>
 
-{{--Table Informations--}}
+<?php /*Table Informations*/ ?>
 <div class="row">
     <div class="col-lg-12">
         <table class="table table-bordered table-hover" id="aItemTab">
@@ -182,34 +186,40 @@
             </thead>
 
             <tbody>
-            @foreach($items as $it)
+            <?php foreach($items as $it): ?>
                 <tr>
                     <td class="col-md-2 text-center td_IML" id ="td_IML">
-                       <a class="image-link" id="Image_Link" href="img/tempEng/{{$it->imName}}"><img src="img/tempEng/{{$it->imName}}" alt="" class="img-responsive" width="300" height="200"></a>
+                       <a class="image-link" id="Image_Link" href="img/tempEng/<?php echo e($it->imName); ?>"><img src="img/tempEng/<?php echo e($it->imName); ?>" alt="" class="img-responsive" width="300" height="200"></a>
                     </td>
                     <td class="col-md-2 text-center dbOrder">
-                        {!! $it->catRef !!}
+                        <?php echo $it->catRef; ?>
+
                     </td>
                     <td class="col-md-2 text-center dbOrder">
-                        {!! $it->itName !!}
+                        <?php echo $it->itName; ?>
+
                     </td>
                     <td class="col-md-2 text-center dbOrder">
-                        {!! $it->itDescrip !!}
+                        <?php echo $it->itDescrip; ?>
+
                     </td>
                     <td class="col-md-2 text-center dbOrder">
-                        {!! $it->itSize !!}
+                        <?php echo $it->itSize; ?>
+
                     </td>
                     <td class="col-md-2 text-center dbOrder">
-                        {!! $it->avqty !!}
+                        <?php echo $it->avqty; ?>
+
                     </td>
                     <td class="col-md-2 text-center dbOrder">
-                        {!! $it->price !!}
+                        <?php echo $it->price; ?>
+
                     </td>
                     <td class="col-md-1 text-center">
-                    <a href="javascript:void(0);" class="btn btn-danger btn-block" role="button" onclick="return confirmRemItem({!! $it->itID !!});">Remove</a>
+                    <a href="javascript:void(0);" class="btn btn-danger btn-block" role="button" onclick="return confirmRemItem(<?php echo $it->itID; ?>);">Remove</a>
                     </td>
                 </tr>
-                @endforeach
+                <?php endforeach; ?>
             </tbody>
         </table>
         <!-- Trigger the modal for adding templates with a button -->
@@ -220,4 +230,5 @@
 </div>
 
 
-@stop
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('pages.Artist.artMainTemp', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

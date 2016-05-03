@@ -3,6 +3,7 @@
 namespace App\Exceptions;
 
 use Exception;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
@@ -45,6 +46,19 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $e)
     {
+        if($e instanceof DBException)
+        {
+            return Redirect::to('/dbExcp');
+        }
+        if($e instanceof IMAPException)
+        {
+            return Redirect::to('/imapExcp');
+        }
+        if($e instanceof SendMailException)
+        {
+            return Redirect::to('/smailExcp');
+        }
+
         if ($this->isHttpException($e)) {
             return $this->renderHttpExceptionView($e);
         }
