@@ -22,7 +22,6 @@
             display: block;
         }
 </style>
-
 <div class="form-group">
     <div class="row">
         <div class="container-fluid">
@@ -47,6 +46,7 @@
             <div class="panel panel-default, col-md-10 col-md-offset-0 ">
                 <div class="col-md-6 col-md-offset-0">
                     {{ Form::open(array('url'=>'setpromotion' ,'method' => 'PUT', 'files' => true)) }}
+                    <input type="hidden" name="_token" value="{{ csrf_token() }}" />
                     <div class="form-group" class="col-md-6">
                         <div class="form-group col-md-offset-1">
                             <div class="form-group col-md-offset-1">
@@ -55,17 +55,24 @@
                                 </p>
                                 <hr/>
                             </div> 
+                            @if($oldpromotion>= 1)
+                                <link rel="stylesheet" type="text/css" href="assets/sweetalert/dist/sweetalert.css">
+                                <script src="assets/sweetalert/dist/sweetalert.min.js"></script>
+                                <script>
+                                    sweetAlert("Notice..!!!", "A Promotion is expiered on today");
+                                </script>
+                            @endif
                             <div class="form-group" >
-                                <div >
-                                    <label class="control-label">Select an image </label>
+                                <label class="control-label">Select an image </label>
 
                                     <div class="form-group">
                                         <div class="form-group">
                                             <span class="btn btn-default btn-file">Browse {!! Form::file('image', null) !!}</span>
+                                            <p style="color:gray">( Optional )</p>
                                         </div>
-                                        <P style="color:red">{{$errors->first('image')}}</P><br/>
+                                        <P style="color:red">{{$errors->first('image')}}</P>
                                     </div>
-                                </div>
+                                
                                 <div >
                                     {{ Form::label('title', 'Title')}}
                                     <div class="form-group">
@@ -80,6 +87,13 @@
                                         <P style="color:red">{{$errors->first('body')}} </P>
                                     </div>
                                 </div>
+                                <div class="form-group" class="col-xs-3">
+                                    <label for="InputPercentage">
+                                        Promotion Percentage
+                                    </label>
+                                    <input type="text" name="Percentage" class="form-control" placeholder="%" id="InputPrice"/> <!-- required pattern="\d{1,2}"/> -->
+                                       <P style="color:red">{{$errors->first('Percentage')}} </P>
+                                </div>
                                 <div >
                                     <label for="startDate"> 
                                         Start Date
@@ -93,31 +107,23 @@
                                 <label for="endDate" >
                                     End Date 
                                 </label>
-                            </div>
-                            <div class='input-group date'  id="dp2">
-                                <input type="date" name="end_date" class="form-control"/>
-                                <P style="color:red">{{$errors->first('end_date')}} </P>
-                            </div><br/>
-                            <div class="form-group" class="col-xs-3">
-                                <div>
-                                    <button type="submit" class="btn btn-primary" >Asign Promotion</button><br/>
-                                    @if($pr == 1)
-                                    <link rel="stylesheet" type="text/css" href="css/sweetalert.css"/>
-                                    <script src="js/sweetalert.min.js"></script>
-                                    <script>
-                                        sweetAlert("Sorry..!!!", "You have already assigned a promotion", "error");
-                                    </script>
-                                    @endif 
-                                    @if($pr == 0)
-                                    <link rel="stylesheet" type="text/css" href="css/sweetalert.css"/>
-                                    <script src="js/sweetalert.min.js"></script>
-                                    <script>
-                                        sweetAlert("Success..!!!", "You have successfully assigned a promotion", "success");
-                                    </script>
-                                    @endif 
-                                <br/>
                                 </div>
-                            </div>
+                                <div class='input-group date'  id="dp2">
+                                    <input type="date" name="end_date" class="form-control"/>
+                                    <P style="color:red">{{$errors->first('end_date')}} </P>
+                                </div><br/>
+                                <div class="form-group" class="col-xs-3">
+                                    <button type="submit" class="btn btn-primary" >Asign Promotion</button>
+                                    <a href="mailaboutpromotion" class="btn btn-primary"> Email to Customers</a><br/>
+                                    @if($pr == 1)
+                                        <link rel="stylesheet" type="text/css" href="assets/sweetalert/dist/sweetalert.css"/>
+                                        <script src="assets/sweetalert/dist/sweetalert.min.js"></script>
+                                        <script>
+                                            sweetAlert("Success..!!!", "You have successfully assigned a New Promotion", "success");
+                                        </script>
+                                    @endif 
+                                    <br/>
+                                </div>
                             </div>
                         </div>
                     {{ Form::close() }}
