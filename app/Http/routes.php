@@ -103,7 +103,6 @@ Route::group(['middleware' => ['web']], function () {
     //{{Mayura's Routes}}
 
     //routes according to roles
-    Route::resource('review_add', 'User\OrderController@add_item_review' );
     Route::get('admin', ['middleware' => ['role:admin'],'uses' => 'Artist\ArtMBoardController@viewPage' ]);
     Route::get('myorders', ['middleware' => ['role:customer'],'uses' => 'User\OrderController@getOrder' ]);
     Route::get('myorderView.{id}', ['middleware' => ['role:customer'],'uses' => 'User\OrderController@myorderView' ]);
@@ -111,10 +110,11 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('deactive_reason', ['middleware' => ['role:customer'],'uses' => 'User\MailController@deactive' ]);
     Route::get('item_review.{itID}', ['middleware' => ['role:customer'],'uses' => 'User\OrderController@get_item_review' ]);
     Route::get('item_list', ['middleware' => ['role:customer'],'uses' => 'User\OrderController@get_item_list' ]);
-
+    Route::get('review_add', ['middleware' => ['role:customer'],'uses' => 'User\OrderController@add_item_review' ]);
+   // Route::resource('UserRating', ['middleware' => ['role:customer'],'uses' => 'User\OrderController@rating' ]);
 
     //routes for all users
- 
+ //   Route::resource('UserRating/{tt}', 'User\OrderController@rating');
     Route::resource('register', 'User\RegisterController@index');
     Route::resource('/login','User\RegisterController@getLogin');
     Route::resource('/myaccount','User\RegisterController@getAccount');
