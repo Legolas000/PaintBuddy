@@ -152,6 +152,8 @@ return [
         Kryptonit3\Counter\CounterServiceProvider::class,
         Reportico\Reportico\ReporticoServiceProvider::class,
         Barryvdh\DomPDF\ServiceProvider::class,
+        BackupManager\Laravel\Laravel5ServiceProvider::class,
+
 
         /*
          * Application Service Providers...
