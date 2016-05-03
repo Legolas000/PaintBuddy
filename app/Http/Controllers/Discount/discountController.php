@@ -324,10 +324,10 @@ class discountController extends Controller{
 		$emails =  DB::table('users')->select('email')->get();
 		$data = ['heading' => 'Welcome to PaintBuddy!!'];
 		foreach ($emails as $mails) {
-			Mail::send('pages/discount/promotionpdf', array("table" => $table),$mails, function($message) {
+			Mail::send('pages/discount/promotionpdf', array("table" => $table), function($message) use($mails) {
 				$message->from('paintbuddyProj@gmail.com');
-				$message->to($mails)	
-				->subject('Paint Buddy Promotion');		//'arhamshan625@gmail.com'
+				$message->to($mails->email)	
+				->subject('Paint Buddy Promotion');	
 			});
 		}
 		return view('pages\Discount\promotionpdf', ['table'=>$table ] );
